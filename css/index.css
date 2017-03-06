@@ -1,0 +1,35 @@
+.opcion1 {
+    background-image: url("../img/menu/Eurocine1_1024.png");
+    height: 65px;
+}
+
+.opcion2 {
+    background-image: url("../img/menu/nuestrosamigos1_1024.png");
+    height: 48px;
+}
+
+.opcion3 {
+    background-image: url("../img/menu/Festival1_1024.png");
+    height: 48px;
+}
+
+.opcion4 {
+    background-image: url("../img/menu/Eurofilmpedia1_1024.png");
+    height: 108px;
+}
+
+.opcion1:hover {
+    background-image: url("../img/menu/Eurocine2_1024.png");
+}
+
+.opcion2:hover {
+    background-image: url("../img/menu/nuestrosamigos2_1024.png");
+}
+
+.opcion3:hover {
+    background-image: url("../img/menu/Festival2_1024.png");
+}
+
+.opcion4:hover {
+  background-image: url("../img/menu/Eurofilmpedia2_1024.png");
+}

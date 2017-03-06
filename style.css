@@ -1,0 +1,141 @@
+/*
+Theme Name: Eurocine Theme
+Theme URI: https://festivaleurocine.com/
+Author: Eurocine 2017
+Author URI: https://festivaleurocine.com/
+Description: Festival de cine Europeo
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: Eurocine, eurofilmpedia, Europa, Colombia
+Version:1.0
+*/
+
+ body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+
+
+.home-temporal img{
+    width: 100%;
+}
+
+.social ul li {
+  display: inline;
+  text-align: center;
+}
+
+.contactenos{
+    padding-bottom: 70px !important;
+    padding-top: 70px !important;
+}
+
+.menu{
+    align-items: center;
+}
+
+.contactenos p:first-child{
+    text-decoration: underline;
+    text-transform: uppercase;
+    padding-bottom: 20px;
+}
+
+.press-kit{
+  border: solid 0.5px;
+  margin-left: 5px ;
+}
+
+.press-kit p{
+  font-weight: bold;
+}
+
+.border{
+  border: solid 0.5px;
+  font-weight: bold;
+  padding: 15px;
+}
+
+.cont{
+  height: 50px;
+}
+
+.cont .kit{
+  height: 100%;
+}
+
+.margin-bottom-0{
+ margin-bottom: 0px !important;
+}
+
+.contact-form{
+  padding: 0 70px;
+}
+
+.contact-form input, .cont-contactBtn .contact-form textarea {
+  border: 1px solid #1d1d1d;
+  font-size: 12px;
+  text-transform: none;
+  background-color: black;
+}
+
+.contact-form input[type="text"], .contact-form input[type="email"], .contact-form input[type="date"] {
+  float: left;
+  margin-bottom: 8px;
+  padding-left: 3%;
+}
+
+.cont-form{
+  margin-top: 8px;
+}
+
+.cont-form .form{
+  margin: 0 auto;
+}
+
+.same-height{
+  display: flex;
+}
+
+.footer-movil{
+  display: none;
+}
+
+@media (max-width: 420px) {
+
+  .press-kit{
+    margin-left:0 !important;
+  }
+
+  .kit{
+    display: none;
+  }
+
+  .footer-movil{
+    display: inherit;
+    border-top: 10px solid black;
+    height: 314px;
+    display: flex;
+    align-items: center;
+  }
+
+  .same-height{
+    display: inherit;
+  }
+
+  .menu{
+      padding-left: 0px;
+      padding-top: 40px;
+      text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .press-kit{
+    margin-left:0 !important;
+  }
+}

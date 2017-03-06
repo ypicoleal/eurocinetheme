@@ -1,0 +1,24 @@
+@font-face {
+  font-family: Elevation;
+  src: url("../font/Elevation.ttf");
+}
+
+@font-face {
+  font-family: MyriadPro-Bold;
+  src: url("../font/MyriadPro-Bold.otf");
+}
+
+@font-face {
+  font-family: MyriadPro-BoldIt;
+  src: url("../font/MyriadPro-BoldIt.otf");
+}
+
+@font-face {
+  font-family: MyriadPro-It;
+  src: url("../font/MyriadPro-It.otf");
+}
+
+@font-face {
+  font-family: MyriadPro-Regular;
+  src: url("../font/MyriadPro-Regular.otf");
+}

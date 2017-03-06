@@ -1,0 +1,67 @@
+.cont-menu{
+  background-color: #4FB25F;
+}
+
+.color-pauta{
+  background-color: #2c3b8e;
+}
+
+.opcion1 {
+    background-image: url("../img/menu/eurocine_1024.png");
+    height: 65px;
+}
+
+.opcion2 {
+    background-image: url("../img/menu/festival_1024.png");
+    height: 48px;
+}
+
+.opcion3 {
+    background-image: url("../img/menu/nuestrosamigos2_1024.png");
+    height: 30px;
+}
+
+.opcion4 {
+    background-image: url("../img/menu/Eurofilmpedia_1024.png");
+    height: 108px;
+}
+
+.opcion1:hover {
+    background-image: url("../img/menu/Eurocine2_1024.png");
+}
+
+.opcion2:hover {
+    background-image: url("../img/menu/fesitval2_1024.png");
+}
+
+.opcion3:hover {
+    background-image: url("../img/menu/nuestrosamigos_1024.png");
+}
+
+.opcion4:hover{
+    background-image: url("../img/menu/Eurofilmpedia2_1024.png");
+}
+
+.filtros{
+  display: inline-flex;
+  margin-left: -10px;
+  font-family:  MyriadPro-Regular;
+}
+
+.filtros li{
+  padding-right:25px;
+  border-bottom: 2px #4FB25F solid;
+}
+
+.active{
+  border-bottom: 5px #2c3b8e solid !important;
+}
+
+.filtros li a{
+  text-decoration: none;
+}
+
+.titulo-media{
+  font-size: 18px;
+  font-weight: bold;
+}

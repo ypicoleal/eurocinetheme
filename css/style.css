@@ -109,6 +109,12 @@ main {
 
 .caja-contenido{
   height: 204px;
+  padding-right: 0px !important;
+}
+
+.caja-contenido img{
+  width: 100%;
+  height: 100%;
 }
 
 .caja-pelicula{
@@ -587,3 +593,8 @@ Modal
     position: relative;
     top: 3px;
 }
+
+
+/*
+
+*/

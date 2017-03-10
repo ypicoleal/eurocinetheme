@@ -16,6 +16,53 @@ function amigos_fn($atts){
 	return $template;
 }
 
+function add_color_category() {
+	// this will add the custom meta field to the add new term page
+	?>
+	<div class="form-field">
+		<label for="term_meta[cat_color]"><?php _e( 'Color de categoria', 'eurocine' ); ?></label>
+		<input type="color" name="term_meta[cat_color]" id="term_meta[cat_color]" value="">
+		<p class="description"><?php _e( 'Ingrese el color de la categoria','eurocine' ); ?></p>
+	</div>
+<?php
+}
+add_action( 'category_add_form_fields', 'add_color_category', 10, 2 );
+
+function edit_color_category($term) {
+ 
+	// put the term ID into a variable
+	$t_id = $term->term_id;
+ 
+	// retrieve the existing value(s) for this meta field. This returns an array
+	$term_meta = get_option( "taxonomy_$t_id" ); ?>
+	<tr class="form-field">
+	<th scope="row" valign="top"><label for="term_meta[cat_color]"><?php _e( 'Color de categoria', 'eurocine' ); ?></label></th>
+		<td>
+			<input type="color" name="term_meta[cat_color]" id="term_meta[cat_color]" value="<?php echo esc_attr( $term_meta['cat_color'] ) ? esc_attr( $term_meta['cat_color'] ) : ''; ?>">
+			<p class="description"><?php _e( 'Ingrese el color de la categoria','eurocine' ); ?></p>
+		</td>
+	</tr>
+<?php
+}
+add_action( 'category_edit_form_fields', 'edit_color_category', 10, 2 );
+
+function save_taxonomy_custom_meta( $term_id ) {
+	if ( isset( $_POST['term_meta'] ) ) {
+		$t_id = $term_id;
+		$term_meta = get_option( "taxonomy_$t_id" );
+		$cat_keys = array_keys( $_POST['term_meta'] );
+		foreach ( $cat_keys as $key ) {
+			if ( isset ( $_POST['term_meta'][$key] ) ) {
+				$term_meta[$key] = $_POST['term_meta'][$key];
+			}
+		}
+		// Save the option array.
+		update_option( "taxonomy_$t_id", $term_meta );
+	}
+}  
+add_action( 'edited_category', 'save_taxonomy_custom_meta', 10, 2 );  
+add_action( 'create_category', 'save_taxonomy_custom_meta', 10, 2 );
+
 function home_fn($atts){
 	$template = file_get_contents(get_template_directory() . '/html/home.html', true);
 	$url_template = get_bloginfo( 'template_directory' );

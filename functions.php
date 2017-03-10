@@ -61,10 +61,11 @@ function get_apoyos(){
 	global $post;
 
 	$the_query = new WP_Query(array(
-			'post_type' => 'apoyo'
+			'post_type' => 'apoyo',
+			'posts_per_page' => -1
 		));
 
-	$box = '<div class="row margin-bottom-0">';
+	$box = '';
 		if ( $the_query->have_posts() ) {
 			while ( $the_query->have_posts() ) {
 				$the_query->the_post();
@@ -81,7 +82,7 @@ function get_apoyos(){
 			}
 			wp_reset_postdata();
 		}
-    $box .= '</div>';
+
     return $box;
 }
 
@@ -90,7 +91,8 @@ function get_slide($post_type){
 	global $post;
 
 	$the_query = new WP_Query(array(
-			'post_type' => $post_type
+			'post_type' => $post_type,
+			'posts_per_page' => -1
 		));
 
 	$box = '<ul class="slides">';
@@ -114,32 +116,37 @@ function get_slide_superior(){
 	global $post;
 
 	$the_query = new WP_Query(array(
-			'post_type' => 'slide-superior'
+			'post_type' => 'slide-superior',
+			'posts_per_page' => -1
 		));
-
-	$box = '<ul class="slides">';
+	$modals = '';
+	$box = '<div class="col s12 cont-slider">';
+	$box .= '<div class="slider">';
+	$box .= '<ul class="slides">';
 		if ( $the_query->have_posts() ) {
-			
 			while ( $the_query->have_posts() ) {
 				$the_query->the_post();
 				$box .= '<li>'; 
 				$box .= '	<img src="'. get_the_post_thumbnail_url() .'">';
 				$box .= '	<div class="caption caption2 left-align">';
-	            $box .= '	    <a href="#" class="leer-mas black-text" data-target="modals'.$post->ID.'">Leer Mas</a>';
+	            $box .= '	    <a href="#modals'.$post->ID.'" class="leer-mas black-text modal-trigger">Leer Mas</a>';
 	            $box .= '	</div>';
-	            $box .= '	<div id="modals'.$post->ID.'" class="modal">';
-                $box .= '  		<div class="modal-header">';
-                $box .= '    		<button  class="modal-action modal-close waves-effect close modal-close"><i  class="small material-icons white-text">close</i></button>';
-                $box .= '  		</div>';
-                $box .= '  		<div class="modal-content">';
-                $box .= 			get_the_content();
-                $box .= '  		</div>';
-                $box .= '	</div>';
+	            $modals .= '	<div id="modals'.$post->ID.'" class="modal">';
+                $modals .= '  		<div class="modal-header">';
+                $modals .= '    		<button  class="modal-action modal-close waves-effect close modal-close"><i  class="small material-icons white-text">close</i></button>';
+                $modals .= '  		</div>';
+                $modals .= '  		<div class="modal-content">';
+                $modals .= 			get_the_content();
+                $modals .= '  		</div>';
+                $modals .= '	</div>';
                 $box .= '</li>';
 			}
 			wp_reset_postdata();
 		}
     $box .= '</ul>';
+    $box .= '</div>';
+    $box .= '</div>';
+    $box .= $modals;
     return $box;
 }
 

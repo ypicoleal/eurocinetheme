@@ -21,37 +21,37 @@
 }
 
 .opcion1 {
-    background-image: url("../img/menu/eurocine_1024.png");
+    background-image: url("../img/menu/menu2/eurocine_1024.png");
     height: 65px;
 }
 
 .opcion2 {
-    background-image: url("../img/menu/festival_1024.png");
+    background-image: url("../img/menu/menu2/festival_1024.png");
     height: 48px;
 }
 
 .opcion3 {
-    background-image: url("../img/menu/nuestrosamigos2_1024.png");
+    background-image: url("../img/menu/menu2/nuestrosamigos2_1024.png");
     height: 30px;
 }
 
 .opcion4 {
-    background-image: url("../img/menu/Eurofilmpedia_1024.png");
+    background-image: url("../img/menu/menu2/Eurofilmpedia_1024.png");
     height: 108px;
 }
 
 .opcion1:hover {
-    background-image: url("../img/menu/Eurocine2_1024.png");
+    background-image: url("../img/menu/menu2/Eurocine2_1024.png");
 }
 
 .opcion2:hover {
-    background-image: url("../img/menu/fesitval2_1024.png");
+    background-image: url("../img/menu/menu2/fesitval2_1024.png");
 }
 
 .opcion3:hover {
-    background-image: url("../img/menu/nuestrosamigos_1024.png");
+    background-image: url("../img/menu/menu2/nuestrosamigos_1024.png");
 }
 
 .opcion4:hover{
-    background-image: url("../img/menu/Eurofilmpedia2_1024.png");
+    background-image: url("../img/menu/menu2/Eurofilmpedia2_1024.png");
 }

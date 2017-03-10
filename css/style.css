@@ -119,10 +119,6 @@ main {
   height: 175px;
 }
 
-.caja-apoyo{
-  height: 263px;
-}
-
 .caja-patrocinador{
   height: 220px;
 }
@@ -131,8 +127,8 @@ main {
   height: 100px;
   margin-left: 2% !important;
   margin-right: 1%;
-  margin-top: 18px;
-  margin-bottom: 10px
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
 
 .contactenos p:first-child {
@@ -179,6 +175,10 @@ main {
 
 .cont-left{
   border-left: 10px #fff solid;
+}
+
+.cont-slider-patrocinador .slider .slides li img, .cont-slider-equipo .slider .slides li img{
+   background-size: cover;
 }
 
 .cont-slider-patrocinador .slider .indicators{
@@ -430,10 +430,6 @@ main {
       width: 100% !important;
     }
 
-    .caja-apoyo {
-        height: 100%;
-    }
-
     .caja-p{
       height: 100px;
       border-left: 6px #FFA500 solid;
@@ -497,6 +493,9 @@ main {
     }
     .white-mobil{
       display: none;
+    }
+    .slider .slides li img {
+      background-size: cover;
     }
 }
 

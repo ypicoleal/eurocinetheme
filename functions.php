@@ -21,7 +21,7 @@ function add_color_category() {
 	?>
 	<div class="form-field">
 		<label for="term_meta[cat_color]"><?php _e( 'Color de categoria', 'eurocine' ); ?></label>
-		<input type="color" name="term_meta[cat_color]" id="term_meta[cat_color]" value="">
+		<input type="text" name="term_meta[cat_color]" id="term_meta[cat_color]" value="">
 		<p class="description"><?php _e( 'Ingrese el color de la categoria','eurocine' ); ?></p>
 	</div>
 <?php
@@ -38,7 +38,7 @@ function edit_color_category($term) {
 	<tr class="form-field">
 	<th scope="row" valign="top"><label for="term_meta[cat_color]"><?php _e( 'Color de categoria', 'eurocine' ); ?></label></th>
 		<td>
-			<input type="color" name="term_meta[cat_color]" id="term_meta[cat_color]" value="<?php echo esc_attr( $term_meta['cat_color'] ) ? esc_attr( $term_meta['cat_color'] ) : ''; ?>">
+			<input type="text" name="term_meta[cat_color]" id="term_meta[cat_color]" value="<?php echo esc_attr( $term_meta['cat_color'] ) ? esc_attr( $term_meta['cat_color'] ) : ''; ?>">
 			<p class="description"><?php _e( 'Ingrese el color de la categoria','eurocine' ); ?></p>
 		</td>
 	</tr>

@@ -72,150 +72,69 @@
                   </div>
                   <div class="col s12">
                       <nav class="filtros">
-                          <a href="#" class="gris"><span>Lugares</span></a>
-                          <a href="#" class="gris"><span>Eurocine</span></a>
-                          <a href="#" class="gris"><span>Artistas</span></a>
-                          <a href="#" class="gris"><span>Año</span></a>
-                          <a href="#" class="gris"><span>Enlaces</span></a>
-                          <a href="#" class="gris"><span>Eventos</span></a>
+                            <?php $categories = get_categories( array(
+                                        'hide_empty'   => 0
+                                    ) );
+                            foreach( $categories as $category ) {
+                                $t_id = $category->term_id;
+                                $term_meta = get_option( "taxonomy_$t_id" ); ?>
+                            <a href="<?php echo esc_url(get_category_link( $category->term_id )); ?>" class="gris" style="border-bottom:12px <?php echo esc_attr( $term_meta['cat_color'] ); ?> solid;"><span><?php echo esc_html( $category->name ); ?></span><span class="linea"></span></a>
+                            <?php }?>
                       </nav>
                   </div>
               </div>
-                <div class="row">
-                    <div class="col l6 s12">
-                        <div class="row">
-                            <div class="col l11 s12 color-peliculas caja-contenido">
-                                <img src="<?php bloginfo( 'template_directory' );?>/img/foto eurofilmpedia1.png" alt="">
-                            </div>
-                            <div class="col l11 s12 ">
-                              <p> <span class="azul">Eurocine</span> TUE 9.27.2016</p>
-                              <span class="titulo-media">Un recorrido por los carteles de Eurocine</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col l6 s12">
-                        <div class="row">
-                            <div class="col l11 s12  color-peliculas caja-contenido">
-                                <img src="img/foto eurofilmpedia1.png" alt="">
-                            </div>
-                            <div class="col l11 s12 ">
-                              <p> <span class="azul">Eurocine</span> TUE 9.27.2016</p>
-                              <span class="titulo-media">Invitados 2016 Carmen Maura y Lionel Baier</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row same-height">
-                    <div class="col l6 s12">
-                        <div class="row">
-                            <div class="col  l11 s12 color-peliculas caja-contenido">
-                                <img src="<?php bloginfo( 'template_directory' );?>/img/foto eurofilmpedia1.png" alt="">
-                            </div>
-                            <div class="col l11 s12 ">
-                              <p> <span class="azul">Eurocine</span> TUE 9.27.2016</p>
-                              <span class="titulo-media">Invitados 2016 Carmen Maura y Lionel Baier</span>
+                
+                    <?php   
+                            $t_id = get_query_var('cat');
+                            $term_meta = get_option( "taxonomy_$t_id" ); 
+                            $color = esc_attr($term_meta['cat_color']);
+                            $flag = true;
+                    if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+                    <?php if($flag): ?>
+                    <div class="row same-height">
+                    <?php endif; ?>
+                        <div class="col l6 s12">
+                            <div class="row">
+                                <div class="col l11 s12 color-peliculas caja-contenido">
+                                  <a href="<?php the_permalink(); ?>">
+                                      <img src="<?php the_post_thumbnail_url();?>" alt="">
+                                  </a>
+                                </div>
+                                <div class="col l11 s12 ">
+                                  <p> <span style="color: <?php echo $color ?>;"><?php single_cat_title(); ?></span> <?php the_date(); ?></p>
+                                  <span class="titulo-media"><?php the_title(); ?></span>
+                                </div>
                             </div>
                         </div>
+                    <?php if(!$flag): ?>
                     </div>
-                    <div class="col l6 s12 ">
-                        <div class="row full-height">
-                            <div class="col l11 s12 color-pauta full-height">
+                    <?php endif;?>
+                    <?php $flag = !$flag; ?>
+                    <?php  endwhile; endif; ?>
+                    <?php if(!$flag): ?>
+                        <div class="col l6 s12 ">
+                            <div class="row full-height">
+                                <div class="col l11 s12 color-pauta full-height">
 
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </main>
-    <footer class="container">
-        <div class="row center-align margin-bottom-0 same-height">
-            <div class="col l3 s6 black white-text contactenos">
-                <div>
-                    <p>Contactenos</p>
-                    <p>Cra 15 #82 - 58 Ofc</p>
-                    <p class="mail">direccion@festivaleurocine.com</p>
-                    <p class="mail">coordinacion@festivaleurocine.com</p>
-                    <p class="mail copyright">Copyright © 2017 Festival Eurocine</p>
-                </div>
-            </div>
-            <div class="col s6 footer-movil press-kit rga">
-                <p>DESCARGAR PRESS KIT Aquí <a href="#" class="icono-descargar" target="_blank"><svg height="20" width="20" viewBox="0 0 210 210">
-<path d="M210 0 L0 0 L0 210 Z " fill="#000"/>
-Sorry, your browser does not support inline SVG.
-</svg></a></p>
-            </div>
-            <div class="col l9  s12">
-                <div class="container">
+                    <?php else:?>
+                        <div class="row same-height">
+                            <div class="col l6 s12 ">
+                                <div class="row full-height">
+                                    <div class="col l11 s12 color-pauta full-height">
 
-                </div>
-                <div class="row cont">
-                    <div class="col l5 s12 press-kit kit descarga">
-                        <p>DESCARGAR PRESS KIT Aquí <a href="#" class="icono-descargar" target="_blank"><svg height="20" width="20" viewBox="0 0 210 210">
-<path d="M210 0 L0 0 L0 210 Z " fill="#000"/>
-Sorry, your browser does not support inline SVG.
-</svg></a></p>
-                    </div>
-                    <div class="col l7 s12 black kit">
-
-                    </div>
-                    <div class="col s12">
-                        <div class="row">
-                            <div class="col s12">
-                                <div class="row cont-form valign-wrapper">
-                                    <div class="col l6 s12 valid form">
-                                        <p class="border center-align activar-hover">EUROCINE MEMBERSHIP</p>
-                                        <p class="center-align footer-hover">Ingresa tus datos para estar conectado con Eurocine</p>
-                                        <form class="contact-form" action="index.html" method="post">
-                                            <table class="form-footer" border="1">
-                                              <tbody>
-                                                <tr>
-                                                  <td class="white-mobil">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                                  <td>
-                                                    <input class="white-text" type="text" name="nombre" placeholder="Nombre" required>
-                                                  </td>
-                                                  <td class="white-mobil"></td>
-                                                </tr>
-                                                <tr>
-                                                  <td class="white-mobil">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                                  <td>
-                                                      <input class="white-text" type="email" name="email" placeholder="Email" required>
-                                                  </td>
-                                                  <td class="white-mobil"></td>
-                                                </tr>
-                                                <tr>
-                                                  <td class="white-mobil">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                                  <td>
-                                                    <input class="white-text" type="date" name="email" placeholder="Fecha nacimiento" required>
-                                                  </td>
-                                                  <td class="send-td">
-                                                    <input type="submit" class="white-text" name="send" value="SEND">
-                                                  </td>
-                                                </tr>
-                                                <tr class="send-mobil">
-                                                  <td class="white-mobil">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                                  <td align="right" >
-                                                    <input type="submit" class="white-text" name="send" value="SEND">
-                                                  </td>
-                                                  <td class="white-mobil"></td>
-                                                </tr>
-                                              </tbody>
-                                            </table>
-                                        </form>
-                                        <p class="center">
-                                            <a class="boing" href="https://www.boingmarketing.net/ring/" target="_blank">By Boing Marketing Sostenible</a>
-                                        </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                    </div>
-                </div>
+                    <?php endif;?>
             </div>
         </div>
-
-    </footer>
+    </main>
+    <? get_footer() ?>
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="<?php bloginfo( 'template_directory' );?>/js/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="<?php bloginfo( 'template_directory' );?>/materialize/js/materialize.min.js"></script>

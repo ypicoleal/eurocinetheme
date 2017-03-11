@@ -17,7 +17,7 @@
 }
 
 .opcion3 {
-    background-image: url("../img/menu/menu2/nuestrosamigos2_1024.png");
+    background-image: url("../img/menu/menu2/Nuestrosamigos2_1024.png");
     height: 30px;
 }
 
@@ -45,8 +45,10 @@
 .filtros{
   margin-left: -10px;
   font-family:  MyriadPro-Regular;
-  background-color: #fff;
+  background-color: transparent;
   box-shadow: none;
+  font-size: 1px;
+  height: 100%;
 }
 
 .active{
@@ -58,15 +60,47 @@
   display: inline-block;
   cursor: pointer;
   text-align: center;
-  padding: 0 1.5rem;
+  padding: 0 20px;
+  height: 58px;
+  margin: 0 4px;
 }
 
 .filtros a:first-child{
-  color: #2168EA;
+    border-bottom: 12px #2168EA solid;
+}
+
+.filtros a:nth-child(2){
+    border-bottom: 12px #2C3B8E solid;
+}
+
+.filtros a:nth-child(3){
+    border-bottom: 12px #FFA500 solid;
+}
+
+.filtros a:nth-child(4){
+    border-bottom: 12px #6D6F71 solid;
+}
+
+.filtros a:nth-child(5){
+    border-bottom: 12px #4FB25F solid;
+}
+
+.filtros a:nth-child(6){
+    border-bottom: 12px #2C3B8E solid;
 }
 
 .filtros span{
   color: #606060;
+}
+
+.linea{
+    border: 1px #4FB25F solid;
+    position: relative;
+    z-index: -1;
+    margin-left: -30px;
+    margin-top: -13px;
+    display: block;
+    width: 185%;
 }
 
 .titulo-media{
@@ -90,14 +124,14 @@
 }
 .euro-titulo div img{
     margin-left: -10px;
-    margin-top: 10px;
+    margin-top: 20px;
     width: 100%;
 }
 
 
 @media (max-width: 420px) {
   .filtros a{
-     padding: 0 0.2rem;   
+     padding: 0 0.2rem;
   }
 
   .euro-titulo div img {
@@ -114,7 +148,7 @@
   .euro-titulo-2 .t2{
     font-size: 25px;
   }
-  
+
   .euro-titulo div:first-child{
     padding-left: 30px;
   }

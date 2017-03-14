@@ -437,11 +437,11 @@ function wpt_save_subtitulo_meta($post_id, $post) {
 add_action('save_post', 'wpt_save_subtitulo_meta', 1, 2);
 
 
-function theme_settings_page(){
+function theme_settings_page() {
 	?>
 	    <div class="wrap">
 	    <h1>Configuración de pautas</h1>
-	    <form method="post" action="options.php">
+	    <form method="post" action="options.php" enctype="multipart/form-data">
 	        <?php
 	            settings_fields("section");
 	            do_settings_sections("theme-options");      
@@ -452,12 +452,112 @@ function theme_settings_page(){
 	<?php
 }
 
-function add_theme_menu_item()
-{
+function add_theme_menu_item() {
 	add_menu_page("Pautas", "Pautas", "manage_options", "theme-panel", "theme_settings_page", null, 99);
 }
 
 add_action("admin_menu", "add_theme_menu_item");
-//seguir acutalizando los settings para las pautas
 
+
+function display_home_pauta_element() {
+	?>
+    	<input type="text" name="home_url" id="home_url" value="<?php echo get_option('home_url'); ?>" />
+    <?php
+}
+
+function display_amigos_pauta_element() {
+	?>
+    	<input type="text" name="amigos_url" id="amigos_url" value="<?php echo get_option('amigos_url'); ?>" />
+    <?php
+}
+
+function display_eurofilmpedia_pauta_element() {
+	?>
+    	<input type="text" name="eurofilmpedia_url" id="eurofilmpedia_url" value="<?php echo get_option('eurofilmpedia_url'); ?>" />
+    <?php
+}
+
+function display_festival_pauta_element() {
+	?>
+    	<input type="text" name="festival_url" id="festival_url" value="<?php echo get_option('festival_url'); ?>" />
+    <?php
+}
+
+function home_img_display(){
+	?>
+		<img src="<?php echo get_option('img_home'); ?>" width="100" /><br>
+        <input type="file" name="img_home" />
+   <?php
+}
+
+function handle_img_home_upload(){
+	return handle_img_upload("img_home");
+}
+
+function amigos_img_display(){
+	?>
+		<img src="<?php echo get_option('img_amigos'); ?>" width="100" /><br>
+        <input type="file" name="img_amigos" />
+   <?php
+}
+
+function handle_img_amigos_upload(){
+	return handle_img_upload("img_amigos");
+}
+
+function eurofilmpedia_img_display(){
+	?>
+		<img src="<?php echo get_option('img_eurofilmpedia'); ?>" width="100" /><br>
+        <input type="file" name="img_eurofilmpedia" />
+   <?php
+}
+
+function handle_img_eurofilmpedia_upload(){
+	return handle_img_upload("img_eurofilmpedia");
+}
+
+function festival_img_display(){
+	?>
+		<img src="<?php echo get_option('img_festival'); ?>" width="100" /><br>
+        <input type="file" name="img_festival" />
+   <?php
+}
+
+function handle_img_festival_upload(){
+	return handle_img_upload("img_festival");
+}
+
+function handle_img_upload($name){
+	global $option;
+	if($_FILES[$name]["tmp_name"]){
+		$urls = wp_handle_upload($_FILES[$name], array('test_form' => FALSE));
+		$temp = $urls["url"];
+		return $temp; 
+	}
+	return get_option($name);
+}
+
+function display_theme_panel_fields() {
+	add_settings_section("section", "Pautas", null, "theme-options");
+	
+	add_settings_field("home_url", "Home pauta Url", "display_home_pauta_element", "theme-options", "section");
+	add_settings_field("img_home", "Home imagen pauta", "home_img_display", "theme-options", "section");
+    add_settings_field("amigos_url", "Nuestros amigos pauta Url", "display_amigos_pauta_element", "theme-options", "section");
+    add_settings_field("img_amigos", "Nuestros amigos imagen pauta", "amigos_img_display", "theme-options", "section");
+    add_settings_field("eurofilmpedia_url", "Eurofilmpedia pauta Url", "display_eurofilmpedia_pauta_element", "theme-options", "section");
+    add_settings_field("img_eurofilmpedia", "Eurofilmpedia imagen pauta", "eurofilmpedia_img_display", "theme-options", "section");
+    add_settings_field("festival_url", "Festival pauta Url", "display_festival_pauta_element", "theme-options", "section");
+    add_settings_field("img_festival", "Festival imagen pauta", "festival_img_display", "theme-options", "section");
+
+    register_setting("section", "home_url");
+    register_setting("section", "amigos_url");
+    register_setting("section", "eurofilmpedia_url");
+    register_setting("section", "festival_url");
+    register_setting("section", "img_home", "handle_img_home_upload");
+    register_setting("section", "img_amigos", "handle_img_amigos_upload");
+    register_setting("section", "img_eurofilmpedia", "handle_img_eurofilmpedia_upload");
+    register_setting("section", "img_festival", "handle_img_festival_upload");
+}
+
+add_action("admin_init", "display_theme_panel_fields");
 ?>

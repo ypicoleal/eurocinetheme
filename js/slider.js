@@ -2,6 +2,14 @@ $('.slider').slider({
   height: 231,
 });
 
+$(".caja-p").each(function(index, el) {
+    $(this).css({'height': $(this).width()});
+});
+
+$(".leer-mas").click(function(event) {
+  /* Act on the event */
+  console.log("click");
+});
 menu();
 hoverFooter();
 

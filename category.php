@@ -61,24 +61,25 @@
                 </div>
                 <div class="col l8 s7">
                     <div class="euro-titulo-2">
-                        <span class="t1">Blog de la cultura del</span><br>
-                        <span class="t2">Cine Europeo</span>
+                        <p class="t1">Blog de la cultura del</p>
+                        <p class="t2">Cine Europeo</p>
                     </div>
                 </div>
             </div>
               <div class="row">
                   <div class="col s12  white-text separador">
-                      <span class="color-contenido titulos cont-span">FILTRAR POR</span><img src="<?php bloginfo( 'template_directory' );?>/img/star1.svg" alt="">
+                      <span class="color-contenido titulos cont-span">FILTRAR POR</span><img class="star" src="<?php bloginfo( 'template_directory' );?>/img/star1.svg" alt="">
                   </div>
                   <div class="col s12">
                       <nav class="filtros">
                             <?php $categories = get_categories( array(
                                         'hide_empty'   => 0
                                     ) );
+                            $i = 0;
                             foreach( $categories as $category ) {
                                 $t_id = $category->term_id;
                                 $term_meta = get_option( "taxonomy_$t_id" ); ?>
-                            <a href="<?php echo esc_url(get_category_link( $category->term_id )); ?>" class="gris" style="border-bottom:12px <?php echo esc_attr( $term_meta['cat_color'] ); ?> solid;"><span><?php echo esc_html( $category->name ); ?></span><span class="linea"></span></a>
+                            <a href="<?php echo esc_url(get_category_link( $category->term_id )); ?>" class="gris" style="border-bottom:12px <?php echo esc_attr( $term_meta['cat_color'] ); ?> solid;"><span><?php echo esc_html( $category->name ); ?></span><span class="linea <?php echo $category === end($categories)? 'last' : '' ?>"></span></a>
                             <?php }?>
                       </nav>
                   </div>
@@ -100,9 +101,10 @@
                                       <img src="<?php the_post_thumbnail_url();?>" alt="">
                                   </a>
                                 </div>
-                                <div class="col l11 s12 ">
-                                  <p> <span style="color: <?php echo $color ?>;"><?php single_cat_title(); ?></span> <?php the_date(); ?></p>
-                                  <span class="titulo-media"><?php the_title(); ?></span>
+                                <div class="col l11 s12 cont-texto">
+                                  <p class="titulo-fecha"> <span style="color: <?php echo $color ?>;"><?php single_cat_title(); ?></span> <?php the_date(); ?></p>
+                                  <p class="titulo-media-1"><?php the_title(); ?></p>
+                                  <p class="subtitulo-media"><?php echo get_post_meta($post->ID, '_subtitulo', true); ?></p>
                                 </div>
                             </div>
                         </div>
@@ -120,8 +122,8 @@
                             </div>
                         </div>
                     </div>
-                    <?php else:?>
-                        <div class="row same-height">
+                    <?php else: ?>
+                        <div class="row">
                             <div class="col l6 s12 ">
                                 <div class="row full-height">
                                     <div class="col l11 s12 color-pauta full-height">
@@ -134,7 +136,7 @@
             </div>
         </div>
     </main>
-    <? get_footer() ?>
+    <?php get_footer() ?>
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="<?php bloginfo( 'template_directory' );?>/js/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="<?php bloginfo( 'template_directory' );?>/materialize/js/materialize.min.js"></script>

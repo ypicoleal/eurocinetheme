@@ -55,19 +55,22 @@
                 </div>
             </div>
             <div class="col l9 s12 contenido">
+                <?php if ( have_posts() ) : the_post(); ?>
+                <div class="row separador">
+                  <div class="col s12">
+                    <img src="<?php the_post_thumbnail_url();?>" width="100%" alt="">
+                  </div>
+                </div>
                 <div class="row">
                     <div class="col s12">
-                        
+                      <h4><?php the_title(); ?></h4>
+                      <p>Por: <?php the_author(); ?></p>
                     </div>
                     <div class="col s12">
-                    <?php if ( have_posts() ) : the_post(); ?>
-                      <h1><?php the_title(); ?></h1>
-                      <h2>Por: <?php the_author(); ?></h2>
                       <?php the_content();?>
-                    <?php endif;?>
                     </div>
                 </div>
-
+            <?php endif;?>
             </div>
         </div>
     </main>

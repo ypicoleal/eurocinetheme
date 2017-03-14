@@ -43,12 +43,13 @@
 }
 
 .filtros{
-  margin-left: -10px;
+  margin-left: -22px;
   font-family:  MyriadPro-Regular;
   background-color: transparent;
   box-shadow: none;
   font-size: 1px;
   height: 100%;
+
 }
 
 .active{
@@ -60,9 +61,9 @@
   display: inline-block;
   cursor: pointer;
   text-align: center;
-  padding: 0 20px;
+  padding: 0 12px;
   height: 58px;
-  margin: 0 4px;
+  margin: 0 12px;
 }
 
 .filtros a:first-child{
@@ -97,30 +98,62 @@
     border: 1px #4FB25F solid;
     position: relative;
     z-index: -1;
-    margin-left: -30px;
+    margin-left: -16px;
     margin-top: -13px;
     display: block;
-    width: 185%;
+    width: 227%;
 }
 
-.titulo-media{
-  font-size: 18px;
-  font-weight: bold;
+.linea.last{
+  width: 150%;
+}
+
+}
+.filtros .linea:last-child{
+  width: 150% !important;
+}
+
+.cont-texto{
+  padding-left: 0px !important;
+}
+
+.titulo-fecha{
+  margin: 0px;
+}
+
+.titulo-media-1{
+  font-size: 33px;
+  color: #606060;
+  font-family: Elevation;
+  margin: 0px;
+}
+
+.subtitulo-media{
+  font-size: 27px;
+  color: #606060;
+  font-family: Elevation;
+  margin: 0px;
+  line-height: 10px;
 }
 
 .euro-titulo-2{
-    margin-left: -10px;
-    margin-top: 20px;
+    margin-left: 15px;
+    margin-top: 28px;
     color: #b1b1b1;
     font-family: Elevation;
 }
 
+.euro-titulo-2 p{
+  margin: 0px;
+}
+
 .euro-titulo-2 .t1{
-  font-size: 1.5vw;
+  font-size: 2.1vw;
 }
 
 .euro-titulo-2 .t2{
   font-size: 3.5vw;
+  line-height: 35px;
 }
 .euro-titulo div img{
     margin-left: -10px;

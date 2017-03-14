@@ -129,14 +129,6 @@ main {
   height: 220px;
 }
 
-.caja-p{
-  height: 100px;
-  margin-left: 2% !important;
-  margin-right: 1%;
-  margin-top: 2%;
-  margin-bottom: 2%;
-}
-
 .contactenos p:first-child {
     text-decoration: underline;
     text-transform: uppercase;
@@ -188,13 +180,13 @@ main {
 }
 
 .cont-slider-patrocinador .slider .indicators{
-  bottom: -13px;
-  right: 10px;
+  bottom: -22px;
+  right: 20px;
 }
 
 .cont-slider-equipo .slider .indicators{
-  bottom: -13px;
-  right: 5px;
+  bottom: -22px;
+  right: 15px;
 }
 
 .col-patrocinador{
@@ -222,17 +214,21 @@ main {
 
 .slider .slides li img {
   background-size: contain;
+
 }
 
 .slider .indicators {
   text-align: right;
   bottom: 55px;
   z-index: 10;
+  right: 20px;
 }
 
 .slider .indicators .indicator-item {
   background-color: #FFA500;
   margin: 0 2px;
+  width: 24px;
+  height: 24px;
 }
 
 .slider .indicators .indicator-item.active {
@@ -246,7 +242,8 @@ main {
 
 .leer-mas{
     border: 3px solid #FFA500;
-    padding: 0px 25px;
+    padding: 0px 11px;
+    text-transform: uppercase;
 }
 
 .separador{
@@ -258,7 +255,7 @@ main {
   font-size: 40px;
   font-family: MyriadPro-Regular;
   margin-top: -7px;
-
+  text-transform: uppercase;
 }
 
 .cont-titulos{
@@ -436,15 +433,6 @@ main {
       width: 100% !important;
     }
 
-    .caja-p{
-      height: 100px;
-      border-left: 6px #FFA500 solid;
-      border-right: 6px  #FFA500 solid;
-      margin-top: 10px;
-      margin-left: 0px !important;
-      margin-right: 0px;
-    }
-
     .mail{
       font-size: 10px;
     }
@@ -594,6 +582,10 @@ Modal
     top: 3px;
 }
 
+.star{
+    position: relative;
+    top: 7px;
+}
 
 /*
 

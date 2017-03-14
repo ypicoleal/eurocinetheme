@@ -14,10 +14,46 @@
 }
 
 .caja-apoyo .caja-p{
-  background-image: url("../img/home/CARATULA_home_320.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  background-color: #fff;
+}
+
+.fila1, .fila2{
+  display: flex;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+  margin: 0px;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  padding: 0px;
+}
+
+.fila1 .caja-p, .fila2 .caja-p{
+    padding: 0px;
+    margin-left: 5px !important;
+    margin-right: 5px;
+}
+
+.fila1 .caja-p{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.fila2 .caja-p{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.fila1 .caja-p:first-child, .fila2 .caja-p:first-child{
+  margin-left: 10px !important;
+}
+
+.fila1 .caja-p:last-child, .fila2 .caja-p:last-child{
+  margin-right: 10px;
+}
+
+.caja-apoyo .caja-p a img{
+    height: 100%;
+    width: 100%;
 }
 
 .opcion1 {

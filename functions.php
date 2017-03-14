@@ -63,6 +63,15 @@ function save_taxonomy_custom_meta( $term_id ) {
 add_action( 'edited_category', 'save_taxonomy_custom_meta', 10, 2 );  
 add_action( 'create_category', 'save_taxonomy_custom_meta', 10, 2 );
 
+function register_my_menus() {
+  register_nav_menus(
+    array(
+      'main-menu' => __( 'Menu Principal' ),
+    )
+  );
+}
+add_action( 'init', 'register_my_menus' );
+
 function home_fn($atts){
 	$template = file_get_contents(get_template_directory() . '/html/home.html', true);
 	$url_template = get_bloginfo( 'template_directory' );
@@ -102,7 +111,6 @@ function get_contenidos(){
     return $box;
 }
 
-
 function get_apoyos(){
 
 	global $post;
@@ -114,22 +122,33 @@ function get_apoyos(){
 
 	$box = '';
 		if ( $the_query->have_posts() ) {
+			$counter = 0;
 			while ( $the_query->have_posts() ) {
 				$the_query->the_post();
-				$box .= '<div class="col l2 s6 white caja-p" data-target="modal'.$post->ID.'" style="background-image: url('. get_the_post_thumbnail_url() .');">'; 
-				$box .= '</div>';
-				$box .= '<div id="modal'.$post->ID.'" class="modal">';
-                $box .= '  <div class="modal-header">';
-                $box .= '    <button  class="modal-action modal-close waves-effect close modal-close"><i  class="small material-icons white-text">close</i></button>';
-                $box .= '  </div>';
-                $box .= '  <div class="modal-content">';
-                $box .= get_the_content();
-                $box .= '  </div>';
-                $box .= '</div>';
+				$url = get_post_meta($post->ID, '_url', true);
+				if ($counter == 0) {
+					$box .='<div class="col s6 l12">'. PHP_EOL;
+			    	$box .='    <div class="row margin-bottom-0 fila1">'. PHP_EOL;
+				}
+				
+			    $box .='        <div class="col l2 s12 white caja-p" >'. PHP_EOL;
+			    $box .='            <a href="'. $url .'" target="_blank"><img src="'. get_the_post_thumbnail_url() .'" alt=""></a>'. PHP_EOL;
+			    $box .='        </div>'. PHP_EOL;
+			    if ($counter == 4) {
+			    	$box .='     </div>'. PHP_EOL;
+			    	$box .='</div>'. PHP_EOL;
+			    	$counter = 0;
+			    }else {
+			    	$counter++;
+			    }
 			}
+			if ($counter < 4) {
+		    	$box .='     </div>'. PHP_EOL;
+		    	$box .='</div>'. PHP_EOL;
+		    	$counter == 0;
+		    }
 			wp_reset_postdata();
 		}
-
     return $box;
 }
 
@@ -210,7 +229,8 @@ function create_apoyo_type() {
 		'public' => true,
 		'has_archive' => true,
 		'hierarchical' => false,
-		'supports' => array('title', 'thumbnail', 'editor')
+		'supports' => array('title', 'thumbnail'),
+		'register_meta_box_cb' => 'add_url_apoyo_metabox'
 		)
 	);
 }
@@ -296,6 +316,10 @@ function add_url_equipo_metabox() {
 	add_meta_box('wpt_slide_equipo_url', 'URL del Slide', 'wpt_slide_url', 'slide-equipo', 'normal', 'default');
 }
 
+function add_url_apoyo_metabox() {
+	add_meta_box('wpt_apoyo_url', 'URL del Apoyo', 'wpt_slide_url', 'apoyo', 'normal', 'default');
+}
+
 function wpt_slide_url() {
 
 	global $post;
@@ -346,5 +370,70 @@ function wpt_save_puntos_meta($post_id, $post) {
 }
 
 add_action('save_post', 'wpt_save_puntos_meta', 1, 2); // save the custom fields
+
+
+add_action( 'load-post.php', 'subtitulo_meta_boxes_setup' );
+add_action( 'load-post-new.php', 'subtitulo_meta_boxes_setup' );
+
+function subtitulo_meta_boxes_setup() {
+
+  /* Add meta boxes on the 'add_meta_boxes' hook. */
+  add_action( 'add_meta_boxes', 'add_subtitulo_metabox' );
+}
+
+function add_subtitulo_metabox() {
+	add_meta_box('wpt_post_subtitulo', 'Subtitulo', 'wpt_subtitulo', 'post', 'normal', 'default');
+}
+
+function wpt_subtitulo() {
+
+	global $post;
+
+	echo '<input type="hidden" name="submeta_noncename" id="submeta_noncename" value="' .
+	wp_create_nonce(wp_basename(__FILE__)) . '" />';
+
+
+	// Get the location data if its already been entered
+	$subtitulo = get_post_meta($post->ID, '_subtitulo', true);
+
+	// Echo out the field
+
+	echo '<span class="title">Subtitulo</span><input type="text" name="_subtitulo" value="' . $subtitulo . '" class="widefat" />';
+}
+
+function wpt_save_subtitulo_meta($post_id, $post) {
+	
+	// verify this came from the our screen and with proper authorization,
+	// because save_post can be triggered at other times
+	echo $post->post_type;
+	if ( !wp_verify_nonce( $_POST['submeta_noncename'], wp_basename(__FILE__) )) {
+	return $post->ID;
+	}
+
+	// Is the user allowed to edit the post or page?
+	if ( !current_user_can( 'edit_post', $post->ID ))
+		return $post->ID;
+
+	// OK, we're authenticated: we need to find and save the data
+	// We'll put it into an array to make it easier to loop though.
+	
+	$events_meta['_subtitulo'] = $_POST['_subtitulo'];
+	
+	// Add values of $events_meta as custom fields
+	
+	foreach ($events_meta as $key => $value) { // Cycle through the $events_meta array!
+		if( $post->post_type == 'revision' ) return; // Don't store custom data twice
+		$value = implode(',', (array)$value); // If $value is an array, make it a CSV (unlikely)
+		if(get_post_meta($post->ID, $key, FALSE)) { // If the custom field already has a value
+			update_post_meta($post->ID, $key, $value);
+		} else { // If the custom field doesn't have a value
+			add_post_meta($post->ID, $key, $value);
+		}
+		if(!$value) delete_post_meta($post->ID, $key); // Delete if blank
+	}
+
+}
+
+add_action('save_post', 'wpt_save_subtitulo_meta', 1, 2);
 
 ?>

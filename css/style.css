@@ -173,6 +173,10 @@ main {
   right: 20px;
 }
 
+.cont-slider-patrocinador .slider , .cont-slider-equipo .slider, .cont-slider-patrocinador .slider .slides, .cont-slider-equipo .slider .slides{
+  height: 100% !important;
+}
+
 .cont-rigth{
   border-right: 10px #fff solid;
 }
@@ -186,12 +190,12 @@ main {
 }
 
 .cont-slider-patrocinador .slider .indicators{
-  bottom: -22px;
+  bottom: -65px;
   right: 20px;
 }
 
 .cont-slider-equipo .slider .indicators{
-  bottom: -22px;
+  bottom: -65px;
   right: 15px;
 }
 

@@ -10,6 +10,12 @@ $(".leer-mas").click(function(event) {
   /* Act on the event */
   console.log("click");
 });
+
+var cont_patrocinador = $(".cont-slider-patrocinador");
+var cont_equipo = $(".cont-slider-equipo");
+cont_patrocinador.css({height:cont_patrocinador.width()});
+cont_equipo.css({height:cont_equipo.width()});
+
 menu();
 hoverFooter();
 

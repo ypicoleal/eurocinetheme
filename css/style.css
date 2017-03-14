@@ -167,6 +167,12 @@ main {
   border-top: 1px #FFA500 solid;
 }
 
+.cont-slider-patrocinador .slider .indicators, .cont-slider-equipo .slider .indicators{
+  text-align: right;
+  bottom: 55px;
+  right: 20px;
+}
+
 .cont-rigth{
   border-right: 10px #fff solid;
 }
@@ -217,11 +223,12 @@ main {
 
 }
 
-.slider .indicators {
+.cont-slider .slider .indicators {
   text-align: right;
   bottom: 55px;
   z-index: 10;
-  right: 20px;
+  width: 70%;
+  left: 190px; 
 }
 
 .slider .indicators .indicator-item {
@@ -490,6 +497,9 @@ main {
     }
     .slider .slides li img {
       background-size: cover;
+    }
+    .cont-slider .slider .indicators{
+      left: 80px;
     }
 }
 

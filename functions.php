@@ -13,6 +13,8 @@ function amigos_fn($atts){
 	$template = str_replace("{{slider-patrocinador}}", get_slide('slide-patrocinador'), $template);
 	$template = str_replace("{{slider-equipo}}", get_slide('slide-equipo'), $template);
 	$template = str_replace("{{slider-superior}}", get_slide_superior(), $template);
+	$template = str_replace("{{pauta-img}}", get_option('img_amigos'), $template);
+	$template = str_replace("{{pauta-url}}", get_option('amigps_url'), $template);
 	return $template;
 }
 
@@ -24,7 +26,7 @@ function add_color_category() {
 		<input type="text" name="term_meta[cat_color]" id="term_meta[cat_color]" value="">
 		<p class="description"><?php _e( 'Ingrese el color de la categoria','eurocine' ); ?></p>
 	</div>
-<?php
+	<?php
 }
 add_action( 'category_add_form_fields', 'add_color_category', 10, 2 );
 
@@ -34,7 +36,8 @@ function edit_color_category($term) {
 	$t_id = $term->term_id;
  
 	// retrieve the existing value(s) for this meta field. This returns an array
-	$term_meta = get_option( "taxonomy_$t_id" ); ?>
+	$term_meta = get_option( "taxonomy_$t_id" ); 
+	?>
 	<tr class="form-field">
 	<th scope="row" valign="top"><label for="term_meta[cat_color]"><?php _e( 'Color de categoria', 'eurocine' ); ?></label></th>
 		<td>
@@ -42,7 +45,7 @@ function edit_color_category($term) {
 			<p class="description"><?php _e( 'Ingrese el color de la categoria','eurocine' ); ?></p>
 		</td>
 	</tr>
-<?php
+	<?php
 }
 add_action( 'category_edit_form_fields', 'edit_color_category', 10, 2 );
 
@@ -77,8 +80,8 @@ function home_fn($atts){
 	$url_template = get_bloginfo( 'template_directory' );
 	$template = str_replace("{{template_directory}}", $url_template, $template);
 	$template = str_replace("{{contenidos}}", get_contenidos(), $template);
-	//$template = str_replace("{{slider-patrocinador}}", get_slide('slide-patrocinador'), $template);
-	//$template = str_replace("{{slider-equipo}}", get_slide('slide-equipo'), $template);
+	$template = str_replace("{{pauta-img}}", get_option('img_home'), $template);
+	$template = str_replace("{{pauta-url}}", get_option('home_url'), $template);
 	$template = str_replace("{{slider-superior}}", get_slide_superior(), $template);
 	return $template;
 }

@@ -117,7 +117,9 @@
                         <div class="col l6 s12 ">
                             <div class="row full-height">
                                 <div class="col l11 s12 color-pauta full-height">
-
+                                    <a href="<?php echo get_option('eurofilmpedia_url'); ?>" target="_blank">
+                                        <img src="<?php echo get_option('img_eurofilmpedia'); ?>" style="width: 100%; height: 100%;" />
+                                    </a>
                                 </div>
                             </div>
                         </div>

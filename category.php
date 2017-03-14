@@ -96,7 +96,7 @@
                     <?php endif; ?>
                         <div class="col l6 s12">
                             <div class="row">
-                                <div class="col l11 s12 color-peliculas caja-contenido">
+                                <div class="col l11 s12 caja-contenido" style="background-color: <?php echo $color ?>;">
                                   <a href="<?php the_permalink(); ?>">
                                       <img src="<?php the_post_thumbnail_url();?>" alt="">
                                   </a>

@@ -127,7 +127,7 @@ function get_apoyos(){
 				$the_query->the_post();
 				$url = get_post_meta($post->ID, '_url', true);
 				if ($counter == 0) {
-					$box .='<div class="col s6 l12">'. PHP_EOL;
+					$box .='<div class="col s6 m12 l12 padding-0">'. PHP_EOL;
 			    	$box .='    <div class="row margin-bottom-0 fila1">'. PHP_EOL;
 				}
 				

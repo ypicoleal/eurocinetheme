@@ -558,6 +558,8 @@ Modal
 
 .modal{
   border: 20px #FFA500 solid;
+  top: 3%  !important;
+  max-height: 95%;
 }
 
 .modal-content{

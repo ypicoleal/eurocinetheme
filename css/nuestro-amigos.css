@@ -48,12 +48,16 @@
 }
 
 .fila1 .caja-p:last-child, .fila2 .caja-p:last-child{
-  margin-right: 10px;
+  margin-right: 0px;
 }
 
 .caja-apoyo .caja-p a img{
     height: 100%;
     width: 100%;
+}
+
+.padding-0{
+    padding: 0px;
 }
 
 .opcion1 {
@@ -90,4 +94,26 @@
 
 .opcion4:hover{
     background-image: url("../img/menu/menu2/Eurofilmpedia2_1024.png");
+}
+
+
+@media (max-width: 420px) {
+    
+    .fila1, .fila2{
+      display: block;
+      justify-content: inherit;
+    }
+
+    .fila1 .caja-p:first-child, .fila2 .caja-p:first-child{
+      margin-left: 0px !important;
+    }
+
+    .fila1 .caja-p:last-child, .fila2 .caja-p:last-child{
+      margin-right: 0px;
+    }
+
+    .fila1 .caja-p, .fila2 .caja-p{
+        margin-left: 0px !important;
+        margin-right: 0px;
+    }   
 }

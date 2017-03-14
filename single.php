@@ -63,7 +63,7 @@
                 </div>
                 <div class="row">
                     <div class="col s12">
-                      <h4><?php the_title(); ?></h4>
+                      <h5><?php the_title(); ?></h5>
                       <p>Por: <?php the_author(); ?></p>
                     </div>
                     <div class="col s12">

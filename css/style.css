@@ -232,7 +232,7 @@ main {
   bottom: 55px;
   z-index: 10;
   width: 70%;
-  left: 190px; 
+  left: 190px;
 }
 
 .slider .indicators .indicator-item {
@@ -574,6 +574,7 @@ Modal
   border: 20px #FFA500 solid;
   top: 3%  !important;
   max-height: 95%;
+  min-height: 95%;
 }
 
 .modal-content{

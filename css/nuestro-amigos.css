@@ -19,8 +19,8 @@
 
 .fila1, .fila2{
   display: flex;
-  -webkit-justify-content: space-around;
-  justify-content: space-around;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
   margin: 0px;
   margin-left: 0px !important;
   margin-right: 0px !important;
@@ -58,6 +58,8 @@
 
 .padding-0{
     padding: 0px;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
 }
 
 .opcion1 {
@@ -98,7 +100,7 @@
 
 
 @media (max-width: 420px) {
-    
+
     .fila1, .fila2{
       display: block;
       justify-content: inherit;
@@ -115,5 +117,5 @@
     .fila1 .caja-p, .fila2 .caja-p{
         margin-left: 0px !important;
         margin-right: 0px;
-    }   
+    }
 }

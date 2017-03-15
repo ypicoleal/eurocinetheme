@@ -1,0 +1,141 @@
+.cont-menu{
+  background-color: #276CE6;
+}
+
+.color-pauta{
+  background-color: #2c3b8e;
+}
+
+.opcion1 {
+    background-image: url("../img/menu/menu2/eurocine_1024.png");
+    height: 65px;
+}
+
+.opcion2 {
+    background-image: url("../img/menu/menu2/festival_1024.png");
+    height: 48px;
+}
+
+.opcion3 {
+    background-image: url("../img/menu/menu2/Nuestrosamigos2_1024.png");
+    height: 30px;
+}
+
+.opcion4 {
+    background-image: url("../img/menu/menu2/Eurofilmpedia_1024.png");
+    height: 108px;
+}
+
+.opcion1:hover {
+    background-image: url("../img/menu/menu2/Eurocine2_1024.png");
+}
+
+.opcion2:hover {
+    background-image: url("../img/menu/menu2/fesitval2_1024.png");
+}
+
+.opcion3:hover {
+    background-image: url("../img/menu/menu2/nuestrosamigos_1024.png");
+}
+
+.opcion4:hover{
+    background-image: url("../img/menu/menu2/Eurofilmpedia2_1024.png");
+}
+
+.fila1{
+  margin-top: 30px;
+}
+
+.fila2{
+  margin-bottom: 20px !important;
+}
+
+
+.fila1, .fila2{
+  display: flex;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  padding: 0px;
+}
+
+.fila1 .caja-peli, .fila2 .caja-peli{
+    padding: 0px;
+    margin-left: 5px !important;
+    margin-right: 5px;
+}
+
+.fila1 .caja-peli{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.fila2 .caja-peli{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.fila1 .caja-peli:first-child, .fila2 .caja-peli:first-child{
+  margin-left: 10px !important;
+}
+
+.fila1 .caja-peli:last-child, .fila2 .caja-peli:last-child{
+  margin-right: 0px;
+}
+
+.peliculas  .caja-peli a img{
+    width: 100%;
+}
+
+.padding-0{
+    padding: 0px;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.collection{
+  font-family: MyriadPro-Regular;
+  margin-left: -10px;
+  border: 2px solid #606060;
+  width: 300px;
+}
+
+.collection .collection-item {
+  color: #606060 !important;
+  border-bottom: none;
+}
+
+.collection .collection-item.active {
+  background-color: #276CE6;
+  color: #fff !important;
+}
+
+@media (max-width: 420px) {
+
+    .fila1, .fila2{
+      display: block;
+      justify-content: inherit;
+    }
+
+    .fila1 .caja-peli:first-child, .fila2 .caja-peli:first-child{
+      margin-left: 0px !important;
+    }
+
+    .fila1 .caja-peli:last-child, .fila2 .caja-peli:last-child{
+      margin-right: 0px;
+    }
+
+    .fila1 .caja-peli, .fila2 .caja-peli{
+        margin-left: 0px !important;
+        margin-right: 0px;
+    }
+
+    .fila1{
+      margin-bottom: 30px !important;
+    }
+
+    .fila2{
+      margin-top: 30px;
+    }
+}

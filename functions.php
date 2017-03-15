@@ -14,7 +14,7 @@ function amigos_fn($atts){
 	$template = str_replace("{{slider-equipo}}", get_slide('slide-equipo'), $template);
 	$template = str_replace("{{slider-superior}}", get_slide_superior(), $template);
 	$template = str_replace("{{pauta-img}}", get_option('img_amigos'), $template);
-	$template = str_replace("{{pauta-url}}", get_option('amigps_url'), $template);
+	$template = str_replace("{{pauta-url}}", get_option('amigos_url'), $template);
 	return $template;
 }
 
@@ -124,7 +124,7 @@ function get_apoyos(){
 		));
 
 	$box = '';
-		if ( $the_query->have_posts() ) {
+		if ($the_query->have_posts()) {
 			$counter = 0;
 			while ( $the_query->have_posts() ) {
 				$the_query->the_post();
@@ -198,7 +198,7 @@ function get_slide_superior(){
 				$box .= '<li>'; 
 				$box .= '	<img src="'. get_the_post_thumbnail_url() .'">';
 				$box .= '	<div class="caption caption2 left-align">';
-	            $box .= '	    <a href="#modals'.$post->ID.'" class="leer-mas black-text modal-trigger">Leer Mas</a>';
+	            $box .= '	    <a href="#modals'.$post->ID.'" class="leer-mas black-text modal-trigger">Leer Mas <svg height="10" width="10" viewBox="0 0 210 210"><path d="M210 0 L0 0 L0 210 Z " fill="#000"/>Sorry, your browser does not support inline SVG.</svg></a>';
 	            $box .= '	</div>';
 	            $modals .= '	<div id="modals'.$post->ID.'" class="modal">';
                 $modals .= '  		<div class="modal-header">';
@@ -238,6 +238,200 @@ function create_apoyo_type() {
 	);
 }
 
+add_action('init', 'create_pelicula_type');
+function create_pelicula_type() {
+	register_post_type('pelicula', array(
+		'labels' => array(
+			'name' => __('Peliculas'),
+			'singular_name' => __('Pelicula'),
+			'add_new' => _x('Añadir nuevo', 'book'),
+			'add_new_item' => __('Añadir nueva Pelicula'),
+		),
+		'public' => true,
+		'has_archive' => true,
+		'hierarchical' => false,
+		'supports' => array('title', 'editor', 'thumbnail'),
+		'register_meta_box_cb' => 'add_pelicula_metabox'
+		)
+	);
+
+	register_post_type('teatro', array(
+		'labels' => array(
+			'name' => __('Teatros'),
+			'singular_name' => __('Teatro'),
+			'add_new' => _x('Añadir nuevo', 'book'),
+			'add_new_item' => __('Añadir nuevo Teatro'),
+		),
+		'public' => true,
+		'has_archive' => true,
+		'hierarchical' => false,
+		'supports' => array('title'),
+		'register_meta_box_cb' => 'add_teatro_metabox'
+		)
+	);	
+}
+
+function add_teatro_metabox() {
+	add_meta_box('wpt_teatro_meta', 'Ciudad del teatro', 'wpt_teatro_metabox', 'teatro', 'normal', 'default');
+}
+
+function wpt_teatro_metabox() {
+
+	global $post;
+
+	echo '<input type="hidden" name="teatrometa_noncename" id="teatrometa_noncename" value="' .
+	wp_create_nonce(wp_basename(__FILE__)) . '" />';
+
+
+	$ciudad = get_post_meta($post->ID, '_ciudad', true);
+	
+	// Echo out the field
+
+	?>
+	<select name="_ciudad" class="widefat">
+		<option <?php echo $ciudad == 'Bogotá'? 'selected': ''; ?> >Bogotá</option>
+		<option <?php echo $ciudad == 'Medellín'? 'selected': ''; ?> >Medellín</option>
+		<option <?php echo $ciudad == 'Cali'? 'selected': ''; ?> >Cali</option>
+		<option <?php echo $ciudad == 'Barranquilla'? 'selected': ''; ?> >Barranquilla</option>
+		<option <?php echo $ciudad == 'Pereira'? 'selected': ''; ?> >Pereira</option>
+	</select>
+	<?php
+}
+
+function add_pelicula_metabox() {
+	add_meta_box('wpt_pelicula_meta', 'Datos de la pelicula', 'wpt_pelicula_metabox', 'pelicula', 'normal', 'default');
+	add_meta_box('wpt_pelicula_date_meta', 'Horarios de la pelicula', 'wpt_pelicula_hora_metabox', 'pelicula', 'normal', 'default');
+}
+
+function wpt_pelicula_metabox() {
+
+	global $post;
+
+	echo '<input type="hidden" name="pelimeta_noncename" id="urlmeta_noncename" value="' .
+	wp_create_nonce(wp_basename(__FILE__)) . '" />';
+
+
+	$director = get_post_meta($post->ID, '_director', true);
+	$pais = get_post_meta($post->ID, '_pais', true);
+	$youtube = get_post_meta($post->ID, '_youtube', true);
+
+	// Echo out the field
+
+	echo '<span class="title">Director</span><input type="text" name="_director" value="' . $director . '" class="widefat" />';
+	echo '<span class="title">Pais</span><input type="text" name="_pais" value="' . $pais . '" class="widefat" />';
+	echo '<span class="title">URL YouTube</span><input type="text" name="_youtube" value="' . $youtube . '" class="widefat" />';
+}
+
+function wpt_pelicula_hora_metabox	() {
+
+	global $post;
+
+	echo '<input type="hidden" name="pelimeta_noncename" id="urlmeta_noncename" value="' .
+	wp_create_nonce(wp_basename(__FILE__)) . '" />';
+
+
+	/*$director = get_post_meta($post->ID, '_director', true);
+	$pais = get_post_meta($post->ID, '_pais', true);
+	$youtube = get_post_meta($post->ID, '_youtube', true);*/
+
+	$teatros = new WP_Query(array(
+			'post_type' => 'teatro',
+			'posts_per_page' => -1
+		));
+
+	?>
+	<span class="title">Ciudad</span>
+	<select name="_ciudad" class="widefat">
+		<option>Bogotá</option>
+		<option>Medellín</option>
+		<option>Cali</option>
+		<option>Barranquilla</option>
+		<option>Pereira</option>
+	</select>
+	<span class="title">Teatro</span>
+	<select name="_teatro" value="" class="widefat">
+		<?php while ($teatros->have_posts()) {
+			$teatros->the_post();
+			$ciudad = get_post_meta($post->ID, '_ciudad', true);
+			echo '<option value="'. $post->ID .'" ciudad="'. $ciudad .'">'. get_the_title() .'</option>';
+		}
+		?>
+	</select>
+	<span class="title">Fecha</span>
+	<input type="date" name="_fecha" value="" class="widefat" />
+	<span class="title">Hora</span>
+	<input type="time" name="_hora" value="" class="widefat" />
+	<?php
+}
+
+function wpt_save_pelicula_meta($post_id, $post) {
+	
+	// verify this came from the our screen and with proper authorization,
+	// because save_post can be triggered at other times
+	echo $post->post_type;
+	if ( !wp_verify_nonce( $_POST['pelimeta_noncename'], wp_basename(__FILE__) )) {
+	return $post->ID;
+	}
+
+	// Is the user allowed to edit the post or page?
+	if ( !current_user_can( 'edit_post', $post->ID ))
+		return $post->ID;
+
+	// OK, we're authenticated: we need to find and save the data
+	// We'll put it into an array to make it easier to loop though.
+	
+	$events_meta['_director'] = $_POST['_director'];
+	$events_meta['_pais'] = $_POST['_pais'];
+	$events_meta['_youtube'] = $_POST['_youtube'];
+	
+	// Add values of $events_meta as custom fields
+	
+	foreach ($events_meta as $key => $value) { // Cycle through the $events_meta array!
+		if( $post->post_type == 'revision' ) return; // Don't store custom data twice
+		$value = implode(',', (array)$value); // If $value is an array, make it a CSV (unlikely)
+		if(get_post_meta($post->ID, $key, FALSE)) { // If the custom field already has a value
+			update_post_meta($post->ID, $key, $value);
+		} else { // If the custom field doesn't have a value
+			add_post_meta($post->ID, $key, $value);
+		}
+		if(!$value) delete_post_meta($post->ID, $key); // Delete if blank
+	}
+}
+
+function wpt_save_teatro_meta($post_id, $post) {
+	
+	// verify this came from the our screen and with proper authorization,
+	// because save_post can be triggered at other times
+	echo $post->post_type;
+	if ( !wp_verify_nonce( $_POST['teatrometa_noncename'], wp_basename(__FILE__) )) {
+	return $post->ID;
+	}
+
+	// Is the user allowed to edit the post or page?
+	if ( !current_user_can( 'edit_post', $post->ID ))
+		return $post->ID;
+
+	// OK, we're authenticated: we need to find and save the data
+	// We'll put it into an array to make it easier to loop though.
+	
+	$events_meta['_ciudad'] = $_POST['_ciudad'];
+	
+	// Add values of $events_meta as custom fields
+	
+	foreach ($events_meta as $key => $value) { // Cycle through the $events_meta array!
+		if( $post->post_type == 'revision' ) return; // Don't store custom data twice
+		$value = implode(',', (array)$value); // If $value is an array, make it a CSV (unlikely)
+		if(get_post_meta($post->ID, $key, FALSE)) { // If the custom field already has a value
+			update_post_meta($post->ID, $key, $value);
+		} else { // If the custom field doesn't have a value
+			add_post_meta($post->ID, $key, $value);
+		}
+		if(!$value) delete_post_meta($post->ID, $key); // Delete if blank
+	}
+}
+
+add_action('save_post', 'wpt_save_teatro_meta', 1, 2);
+add_action('save_post', 'wpt_save_pelicula_meta', 1, 2);
 
 //agregando slider tipo para slider superior
 add_action('init', 'create_slide_superior_type');

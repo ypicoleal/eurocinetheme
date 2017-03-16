@@ -326,13 +326,14 @@ function wpt_pelicula_hora_metabox	() {
 
 	global $post;
 
+	wp_enqueue_script('peliscript');
+
 	echo '<input type="hidden" name="pelimeta_noncename" id="urlmeta_noncename" value="' .
 	wp_create_nonce(wp_basename(__FILE__)) . '" />';
 
 
-	/*$director = get_post_meta($post->ID, '_director', true);
-	$pais = get_post_meta($post->ID, '_pais', true);
-	$youtube = get_post_meta($post->ID, '_youtube', true);*/
+	
+	$horarios = get_post_meta($post->ID, '_horarios', true);
 
 	$teatros = new WP_Query(array(
 			'post_type' => 'teatro',
@@ -340,8 +341,40 @@ function wpt_pelicula_hora_metabox	() {
 		));
 
 	?>
+	<span class="title" style="font-weight: bold;">Agregados</span>
+	<div class="widefat" id="hor_cont">
+		<?php foreach ($horarios as $key => $horario) {
+			$count = count($horarios);
+			$meses = array(1=>"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+			$date = new DateTime($horario['fecha'] . " " . $horario['hora']);
+			$mes = date('n',$date->getTimestamp());
+   			$dia = date('d',$date->getTimestamp());
+			$dia = $meses[$mes].' '. $dia;
+			$hora = date_format($date, 'g:ia');
+			echo '<p class="widefat horario" index="'.($key + 1).'">'. $horario['ciudad'] .', '. $dia .', '. $horario['teatro'] .', '. $hora .'<a index="'.($key + 1).'" class="hor_del"><img src="'. get_template_directory_uri() .'/img/delete.svg" /></a></p>';
+			echo '<input type="hidden" name="_ciudad_'.($key + 1).'" index="'.($key + 1).'" value="'.$horario['ciudad'].'"/>';
+			echo '<input type="hidden" name="_teatro_'.($key + 1).'" index="'.($key + 1).'" value="'.$horario['teatro'].'"/>';
+			echo '<input type="hidden" name="_fecha_'.($key + 1).'" index="'.($key + 1).'" value="'.$horario['fecha'].'"/>';
+			echo '<input type="hidden" name="_hora_'.($key + 1).'" index="'.($key + 1).'" value="'.$horario['hora'].'"/>';
+
+		} ?>
+	</div><br><br>
+	<script type="text/javascript">
+		window.template_url = "<?php bloginfo( 'template_directory' );?>";
+	</script>
+	<style type="text/css">
+		.horario{
+			padding-top: 5px;
+			padding-bottom: 5px;
+
+		}
+		.horario a{
+			float: right;
+			cursor: pointer;
+		}
+	</style>
 	<span class="title">Ciudad</span>
-	<select name="_ciudad" class="widefat">
+	<select name="_ciudad" class="widefat" id="ciudad_sel">
 		<option>Bogotá</option>
 		<option>Medellín</option>
 		<option>Cali</option>
@@ -349,19 +382,28 @@ function wpt_pelicula_hora_metabox	() {
 		<option>Pereira</option>
 	</select>
 	<span class="title">Teatro</span>
-	<select name="_teatro" value="" class="widefat">
+	<select name="_teatro" value="" class="widefat" id="teatro_sel">
 		<?php while ($teatros->have_posts()) {
 			$teatros->the_post();
 			$ciudad = get_post_meta($post->ID, '_ciudad', true);
-			echo '<option value="'. $post->ID .'" ciudad="'. $ciudad .'">'. get_the_title() .'</option>';
+			echo '<option ciudad="'. $ciudad .'">'. get_the_title() .'</option>';
 		}
 		?>
 	</select>
 	<span class="title">Fecha</span>
-	<input type="date" name="_fecha" value="" class="widefat" />
+	<input type="date" name="_fecha" value="" class="widefat" id="hor_fecha" />
 	<span class="title">Hora</span>
-	<input type="time" name="_hora" value="" class="widefat" />
+	<input type="time" name="_hora" value="" class="widefat" id="hor_time" />
+	<input type="hidden" name="_num_hor" id="num_hor" value="<?php echo count($horarios); ?>"/><br><br>
+	<a class="button button-primary button-large add">Agregar</a>
 	<?php
+}
+
+add_action('admin_init', 'my_peliscript_init');
+
+function my_peliscript_init(){
+	/* Registro de nuestro script. */
+	wp_register_script('peliscript', get_template_directory_uri() . '/js/peliculas_admin.js');
 }
 
 function wpt_save_pelicula_meta($post_id, $post) {
@@ -383,7 +425,22 @@ function wpt_save_pelicula_meta($post_id, $post) {
 	$events_meta['_director'] = $_POST['_director'];
 	$events_meta['_pais'] = $_POST['_pais'];
 	$events_meta['_youtube'] = $_POST['_youtube'];
-	
+
+	$count = intval($_POST['_num_hor']);
+	$horarios = array();
+
+	for ($i=1; $i <= $count; $i++) { 
+		array_push(
+			$horarios,
+			array(
+				'fecha' => $_POST['_fecha_'. $i], 
+				'hora' => $_POST['_hora_'. $i], 
+				'teatro' => $_POST['_teatro_'. $i],
+				'ciudad' => $_POST['_ciudad_'. $i]
+			)
+		);
+	}
+	update_post_meta($post->ID, '_horarios', $horarios);
 	// Add values of $events_meta as custom fields
 	
 	foreach ($events_meta as $key => $value) { // Cycle through the $events_meta array!

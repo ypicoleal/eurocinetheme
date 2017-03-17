@@ -13,8 +13,10 @@ $(".leer-mas").click(function(event) {
 
 var cont_patrocinador = $(".cont-slider-patrocinador");
 var cont_equipo = $(".cont-slider-equipo");
+var trailer = $(".trailer");
 cont_patrocinador.css({height:cont_patrocinador.width()});
 cont_equipo.css({height:cont_equipo.width()});
+trailer.css({height:trailer.width()*0.7})
 
 menu();
 hoverFooter();

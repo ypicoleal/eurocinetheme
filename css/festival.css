@@ -88,17 +88,23 @@
     width: 100%;
 }
 
-.padding-0{
-    padding: 0px;
-    padding-left: 0px !important;
-    padding-right: 0px !important;
-}
-
 .collection{
   font-family: MyriadPro-Regular;
   margin-left: -10px;
   border: 2px solid #606060;
   width: 300px;
+}
+
+.titulo-pelicula, .categoria, .info{
+  color: #606060;
+}
+
+.titulo-pelicula{
+  text-transform: uppercase;
+}
+.categoria{
+  text-align: right;
+  font-size: 20px;
 }
 
 .collection .collection-item {
@@ -109,6 +115,14 @@
 .collection .collection-item.active {
   background-color: #276CE6;
   color: #fff !important;
+}
+
+.trailer{
+  background-color: #414143;
+}
+
+.trailer iframe{
+  margin-bottom: -7px;
 }
 
 @media (max-width: 420px) {
@@ -137,5 +151,9 @@
 
     .fila2{
       margin-top: 30px;
+    }
+
+    .categoria, .titulo-pelicula{
+      text-align: center;
     }
 }

@@ -80,10 +80,34 @@ function home_fn($atts){
 	$url_template = get_bloginfo( 'template_directory' );
 	$template = str_replace("{{template_directory}}", $url_template, $template);
 	$template = str_replace("{{contenidos}}", get_contenidos(), $template);
+	$template = str_replace("{{peliculas}}", get_peliculas(), $template);
 	$template = str_replace("{{pauta-img}}", get_option('img_home'), $template);
 	$template = str_replace("{{pauta-url}}", get_option('home_url'), $template);
 	$template = str_replace("{{slider-superior}}", get_slide_superior(), $template);
 	return $template;
+}
+
+function get_peliculas(){
+    $the_query = new WP_Query(array(
+			'post_type' => 'pelicula',
+			'orderby'	=> 'rand',
+			'posts_per_page' => 4,
+		));
+
+	$box = '';
+		if ( $the_query->have_posts() ) {
+			while ( $the_query->have_posts() ) {
+				$the_query->the_post();
+				$box .= '<div class="col l3 s6">';
+	            $box .= '    <a href="'. get_the_permalink() .'">';
+	            $box .= '        <img src="'. get_the_post_thumbnail_url() .'" alt="">';
+	            $box .= '        <h5 class="center">'. get_the_title() .'</h5>';
+	            $box .= '    </a>';
+	            $box .= '</div>';
+			}
+			wp_reset_postdata();
+		}
+    return $box;
 }
 
 function get_contenidos(){
@@ -100,7 +124,7 @@ function get_contenidos(){
 				$box .='<div class="col l6 s12 ">';
 			    $box .='    <div class="row">';
 			    $box .='        <div class="col s12 color-contenido caja-contenido cont-rigth">';
-			    $box .='        	<img src="'. get_the_post_thumbnail_url() .'" style="width:100%; height:100%;">';
+			    $box .='        	<a href="'. get_the_permalink() .'"><img src="'. get_the_post_thumbnail_url() .'" style="width:100%; height:100%;"></a>';
 			    $box .='        </div>';
 			    $box .='        <div class="col s12 cont-rigth">';
 			    $box .='          <p> <div class="verde">'. get_the_category()[0]->name .'</div> '. get_the_date() .'</p>';
@@ -247,9 +271,18 @@ function create_pelicula_type() {
 			'add_new' => _x('Añadir nuevo', 'book'),
 			'add_new_item' => __('Añadir nueva Pelicula'),
 		),
+		'hierarchical' => true,
 		'public' => true,
+		'show_ui' => true,
+		'show_in_menu' => true,
+		'show_in_nav_menus' => true,
+		'publicly_queryable' => true,
+		'exclude_from_search' => false,
 		'has_archive' => true,
-		'hierarchical' => false,
+		'query_var' => true,
+		'can_export' => true,
+		'rewrite' => true,
+		'capability_type' => 'post',
 		'supports' => array('title', 'editor', 'thumbnail'),
 		'register_meta_box_cb' => 'add_pelicula_metabox'
 		)
@@ -268,11 +301,41 @@ function create_pelicula_type() {
 		'supports' => array('title'),
 		'register_meta_box_cb' => 'add_teatro_metabox'
 		)
-	);	
+	);
+
+	$labels = array(
+		'name'                       => _x( 'Categoria', 'taxonomy general name', 'textdomain' ),
+		'singular_name'              => _x( 'Categoria', 'taxonomy singular name', 'textdomain' ),
+		'search_items'               => __( 'Buscar categorias', 'textdomain' ),
+		'popular_items'              => __( 'Categorias populares', 'textdomain' ),
+		'all_items'                  => __( 'Todas las categorias', 'textdomain' ),
+		'parent_item'                => null,
+		'parent_item_colon'          => null,
+		'edit_item'                  => __( 'Editar categoria', 'textdomain' ),
+		'update_item'                => __( 'Actualizar categoria', 'textdomain' ),
+		'add_new_item'               => __( 'Agregar categoria', 'textdomain' ),
+		'new_item_name'              => __( 'Nuevo nobre de categoria', 'textdomain' ),
+		'separate_items_with_commas' => __( 'Categorias separadas por comas', 'textdomain' ),
+		'add_or_remove_items'        => __( 'Agregar o borrar categorias', 'textdomain' ),
+		'choose_from_most_used'      => __( 'Escojer de las categorias mas usadas', 'textdomain' ),
+		'not_found'                  => __( 'No se encontraron categorias.', 'textdomain' ),
+		'menu_name'                  => __( 'Categorias', 'textdomain' ),
+	);
+
+	$args = array(
+		'hierarchical'          => true,
+		'labels'                => $labels,
+		'show_ui'               => true,
+		'show_admin_column'     => true,
+		'query_var'             => true,
+		'rewrite'               => array( 'slug' => 'pelicula-categoria' ),
+	);
+
+	register_taxonomy( 'pelicula-categoria', 'pelicula', $args );
 }
 
 function add_teatro_metabox() {
-	add_meta_box('wpt_teatro_meta', 'Ciudad del teatro', 'wpt_teatro_metabox', 'teatro', 'normal', 'default');
+	add_meta_box('wpt_teatro_meta', 'Direccion del teatro', 'wpt_teatro_metabox', 'teatro', 'normal', 'default');
 }
 
 function wpt_teatro_metabox() {
@@ -284,10 +347,11 @@ function wpt_teatro_metabox() {
 
 
 	$ciudad = get_post_meta($post->ID, '_ciudad', true);
-	
+	$direccion = get_post_meta($post->ID, '_direccion', true);
 	// Echo out the field
 
 	?>
+	<span class="title">Ciudad</span>
 	<select name="_ciudad" class="widefat">
 		<option <?php echo $ciudad == 'Bogotá'? 'selected': ''; ?> >Bogotá</option>
 		<option <?php echo $ciudad == 'Medellín'? 'selected': ''; ?> >Medellín</option>
@@ -295,6 +359,8 @@ function wpt_teatro_metabox() {
 		<option <?php echo $ciudad == 'Barranquilla'? 'selected': ''; ?> >Barranquilla</option>
 		<option <?php echo $ciudad == 'Pereira'? 'selected': ''; ?> >Pereira</option>
 	</select>
+	<span class="title">Direccion</span>
+	<input type="text" name="_direccion" class="widefat" value="<?php echo $direccion ?>" />
 	<?php
 }
 
@@ -472,6 +538,7 @@ function wpt_save_teatro_meta($post_id, $post) {
 	// We'll put it into an array to make it easier to loop though.
 	
 	$events_meta['_ciudad'] = $_POST['_ciudad'];
+	$events_meta['_direccion'] = $_POST['_direccion'];
 	
 	// Add values of $events_meta as custom fields
 	

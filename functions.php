@@ -4,6 +4,7 @@
 add_theme_support( 'post-thumbnails' );
 add_shortcode( 'amigos', 'amigos_fn' );
 add_shortcode( 'home', 'home_fn' );
+add_shortcode( 'festival_programacion', 'festival_programacion_fn' );
 
 function amigos_fn($atts){
 	$template = file_get_contents(get_template_directory() . '/html/nuestros_amigos.html', true);
@@ -16,6 +17,68 @@ function amigos_fn($atts){
 	$template = str_replace("{{pauta-img}}", get_option('img_amigos'), $template);
 	$template = str_replace("{{pauta-url}}", get_option('amigos_url'), $template);
 	return $template;
+}
+
+function festival_programacion_fn($atts){
+	$ciudad = $_GET['ciudad'];
+	$fecha = $_GET['fecha'];
+	$template = file_get_contents(get_template_directory() . '/html/festival_programacion.html', true);
+	$url_template = get_bloginfo('template_directory');
+	$template = str_replace("{{template_directory}}", $url_template, $template);
+	$template = str_replace("{{horarios}}", get_peliculas_by_query($ciudad), $template);
+	$template = str_replace("{{ciudad}}", $ciudad, $template);
+	$template = str_replace("{{fecha}}", $fecha, $template);
+	//$template = str_replace("{{slider-equipo}}", get_slide('slide-equipo'), $template);
+	//$template = str_replace("{{slider-superior}}", get_slide_superior(), $template);
+	//$template = str_replace("{{pauta-img}}", get_option('img_amigos'), $template);
+	//$template = str_replace("{{pauta-url}}", get_option('amigos_url'), $template);
+	return $template;
+}
+
+function get_peliculas_by_query($ciudad){
+	
+	global $post;
+
+	$the_query = new WP_Query(array(
+			'post_type' => 'teatro',
+			'meta_key' => '_ciudad',
+			'meta_value' => $ciudad,
+			'posts_per_page' => -1,
+		));
+	$box = '';
+	if ( $the_query->have_posts() ) {
+		while ( $the_query->have_posts() ) {
+			$the_query->the_post();
+			$direccion = get_post_meta($post->ID, '_direccion', true);
+			$title = get_the_title();
+			$box .= '<div class="row">';
+		    $box .= '    <div class="col s12">';
+		    $box .= '        <table class="horario">';
+		    $box .= '            <tbody>';
+		    $box .= '                <tr>';
+		    $box .= '                    <td><h5>'. $title .'</h5></td>';
+		    $box .= '                    <td>'. $direccion .'</td>';
+		    $box .= '                </tr>';
+
+		    $pelicula_query = new WP_Query(array(
+				'post_type' => 'pelicula',
+				'posts_per_page' => -1,
+			));
+		    while ( $pelicula_query->have_posts() ) {
+				$pelicula_query->the_post();
+				$box .= '                <tr>';
+			    $box .= '                    <td>Flores</td>';
+			    $box .= '                    <td>5:00 pm</td>';
+			    $box .= '                </tr>';
+			}
+		    $box .= '            </tbody>';
+		    $box .= '        </table>';
+		    $box .= '    </div>';
+		    $box .= '</div>';
+		}
+		wp_reset_postdata();
+	}
+	return $box;
 }
 
 function add_color_category() {
@@ -623,7 +686,6 @@ function create_slide_equipo_type() {
 
 function add_slide_menu() {
   add_menu_page( 'Slider Eurocine', 'Sliders Eurocine', 'manage_options', 'euro-silides.php');
-  // add_submenu_page() if you want subpages, but not necessary
 }
 
 add_action('admin_menu', 'add_slide_menu');

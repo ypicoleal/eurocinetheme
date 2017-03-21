@@ -97,14 +97,25 @@
 
 .titulo-pelicula, .categoria, .info{
   color: #606060;
+  margin-left: -10px !important;
 }
 
 .titulo-pelicula{
   text-transform: uppercase;
+
 }
 .categoria{
   text-align: right;
   font-size: 20px;
+}
+
+.programa td{
+  padding: 0px !important;
+}
+
+.horario td{
+  padding: 0px !important;
+  font-size: 17px;
 }
 
 .collection .collection-item {
@@ -123,6 +134,11 @@
 
 .trailer iframe{
   margin-bottom: -7px;
+}
+
+.pauta{
+  background-color: #4FB25F;
+  height: 400px;
 }
 
 @media (max-width: 420px) {

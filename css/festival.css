@@ -6,6 +6,18 @@
   background-color: #2c3b8e;
 }
 
+.btn-full{
+  width: 100%;
+}
+
+.btn:hover{
+  background-color: #2c3b8e;
+}
+
+.margin-0{
+  margin: 0px !important;
+}
+
 .opcion1 {
     background-image: url("../img/menu/menu2/eurocine_1024.png");
     height: 65px;
@@ -42,22 +54,15 @@
     background-image: url("../img/menu/menu2/Eurofilmpedia2_1024.png");
 }
 
-.fila1{
-  margin-top: 30px;
-}
-
-.fila2{
-  margin-bottom: 20px !important;
-}
-
 
 .fila1, .fila2{
   display: flex;
   -webkit-justify-content: space-around;
   justify-content: space-around;
+  /*
   margin-left: 0px !important;
   margin-right: 0px !important;
-  padding: 0px;
+  padding: 0px;*/
 }
 
 .fila1 .caja-peli, .fila2 .caja-peli{
@@ -88,16 +93,28 @@
     width: 100%;
 }
 
+.cont-peli-padre{
+  display: flex;
+  align-items: center;
+}
+
 .collection{
   font-family: MyriadPro-Regular;
   margin-left: -10px;
+  margin-right: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
   border: 2px solid #606060;
   width: 300px;
+  font-size: 22px;
+}
+
+.collection .collection-item{
+  padding: 16px 20px;
 }
 
 .titulo-pelicula, .categoria, .info{
   color: #606060;
-  margin-left: -10px !important;
 }
 
 .titulo-pelicula{
@@ -141,6 +158,13 @@
   height: 400px;
 }
 
+.titulo-festival{
+  font-size: 40px;
+  font-family: MyriadPro-Regular;
+  margin-top: -7px;
+  text-transform: uppercase;
+}
+
 @media (max-width: 420px) {
 
     .fila1, .fila2{
@@ -172,4 +196,85 @@
     .categoria, .titulo-pelicula{
       text-align: center;
     }
+}
+
+.cb_calendar_control{
+   padding-top:  20px;
+}
+
+.cb_calendar_contain{
+    padding: 0 70px;
+}
+
+
+.cb_calendar tbody td.cb_nday {
+    visibility: hidden;
+}
+
+.cb_calendar thead{
+    border: none;
+}
+
+.cb_calendar tbody td,
+.cb_calendar thead td{
+    text-align: center;
+    color: white;
+}
+
+.cb_calendar tbody td {
+    padding: 2px;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.cb_month {
+    color: white;
+    font-size: 20px;
+    text-align: center;
+}
+
+.cb_calendar tbody td.cb_now{
+    background: #ffa202;
+}
+
+.cb_calendar tbody td.cb_now .cb_day_num{
+    color: black;
+}
+
+#slider {
+  position: relative;
+  overflow: hidden;
+  margin: 20px auto 0 auto;
+  width: 100%;
+  height: 100%;
+}
+
+#slider ul {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#slider ul li {
+  position: relative;
+  display: block;
+  float: left;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+
+a.control_prev:hover, a.control_next:hover {
+  opacity: 1;
+  -webkit-transition: all 0.2s ease;
+}
+
+
+.slider_option {
+  position: relative;
+  margin: 10px auto;
+  width: 160px;
+  font-size: 18px;
 }

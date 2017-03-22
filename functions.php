@@ -5,6 +5,7 @@ add_theme_support( 'post-thumbnails' );
 add_shortcode( 'amigos', 'amigos_fn' );
 add_shortcode( 'home', 'home_fn' );
 add_shortcode( 'festival_programacion', 'festival_programacion_fn' );
+add_shortcode( 'festival', 'festival_fn' );
 
 function amigos_fn($atts){
 	$template = file_get_contents(get_template_directory() . '/html/nuestros_amigos.html', true);
@@ -22,20 +23,81 @@ function amigos_fn($atts){
 function festival_programacion_fn($atts){
 	$ciudad = $_GET['ciudad'];
 	$fecha = $_GET['fecha'];
+	$meses = array(1=>"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+	$date = new DateTime($fecha);
+	$mes = date('n',$date->getTimestamp());
+	$dia = date('d',$date->getTimestamp());
+	$dia = $meses[$mes].' '. $dia;
+
 	$template = file_get_contents(get_template_directory() . '/html/festival_programacion.html', true);
 	$url_template = get_bloginfo('template_directory');
 	$template = str_replace("{{template_directory}}", $url_template, $template);
-	$template = str_replace("{{horarios}}", get_peliculas_by_query($ciudad), $template);
+	$template = str_replace("{{horarios}}", get_peliculas_by_query($ciudad, $date), $template);
 	$template = str_replace("{{ciudad}}", $ciudad, $template);
-	$template = str_replace("{{fecha}}", $fecha, $template);
-	//$template = str_replace("{{slider-equipo}}", get_slide('slide-equipo'), $template);
-	//$template = str_replace("{{slider-superior}}", get_slide_superior(), $template);
-	//$template = str_replace("{{pauta-img}}", get_option('img_amigos'), $template);
-	//$template = str_replace("{{pauta-url}}", get_option('amigos_url'), $template);
+	$template = str_replace("{{fecha}}", $dia, $template);
 	return $template;
 }
 
-function get_peliculas_by_query($ciudad){
+function festival_fn($atts){
+	
+	$template = file_get_contents(get_template_directory() . '/html/festival_principal.html', true);
+	$url_template = get_bloginfo('template_directory');
+	$template = str_replace("{{template_directory}}", $url_template, $template);
+	$template = str_replace("{{peliculas}}", get_peliculas_slider(), $template);
+	//$template = str_replace("{{ciudad}}", $ciudad, $template);
+	//$template = str_replace("{{fecha}}", $dia, $template);
+	return $template;
+}
+
+function get_peliculas_slider(){
+    $the_query = new WP_Query(array(
+			'post_type' => 'pelicula',
+			//'orderby'	=> 'rand',
+			'posts_per_page' => 20,
+		));
+    $counter = 0;
+	$box = '';
+		if ( $the_query->have_posts() ) {
+			while ( $the_query->have_posts() ) {
+				$the_query->the_post();
+				$url = get_post_meta($post->ID, '_url', true);
+				if ($counter == 0) {
+					$box .= '<li>' . PHP_EOL;
+                    $box .= '    <div class="row margin-0 peliculas white-text">' . PHP_EOL;
+                    $box .= '        <div class="col s6 m12 l12 padding-0">' . PHP_EOL;
+                    $box .= '            <div class="row margin-0 fila1">' . PHP_EOL;
+				}else if ($counter == 4) {
+					$box .= '</div>';
+                    $box .= '<div class="col s6 m12 l12 padding-0">';
+                    $box .= '    <div class="row margin-0  fila2">';
+				}
+				$box .= '<div class="col l2 s12 caja-peli">'. PHP_EOL;
+                $box .= '    <a href="'. get_the_permalink() .'"><img src="'. get_the_post_thumbnail_url() .'" alt="">'. PHP_EOL;
+                $box .= '        <h6 class="center white-text">'. get_the_title() .'</h6></a>'. PHP_EOL;
+                $box .= '</div>'. PHP_EOL;
+			    if ($counter == 9) {
+			    	$box .= '			</div>'. PHP_EOL;
+                    $box .= '        </div>'. PHP_EOL;
+                    $box .= '    </div>'. PHP_EOL;
+                    $box .= '</li>'. PHP_EOL;
+			    	$counter = 0;
+			    }else {
+			    	$counter++;
+			    }
+			}
+			if ($counter < 9) {
+		    	$box .= '			</div>'. PHP_EOL;
+                $box .= '        </div>'. PHP_EOL;
+                $box .= '    </div>'. PHP_EOL;
+                $box .= '</li>'. PHP_EOL;
+		    	$counter = 0;
+		    }
+			wp_reset_postdata();
+		}
+    return $box;
+}
+
+function get_peliculas_by_query($ciudad, $fecha){
 	
 	global $post;
 
@@ -51,14 +113,11 @@ function get_peliculas_by_query($ciudad){
 			$the_query->the_post();
 			$direccion = get_post_meta($post->ID, '_direccion', true);
 			$title = get_the_title();
-			$box .= '<div class="row">';
-		    $box .= '    <div class="col s12">';
-		    $box .= '        <table class="horario">';
-		    $box .= '            <tbody>';
-		    $box .= '                <tr>';
-		    $box .= '                    <td><h5>'. $title .'</h5></td>';
-		    $box .= '                    <td>'. $direccion .'</td>';
-		    $box .= '                </tr>';
+
+			$box .= '<tr>';
+            $box .= '    <td><h5>'. $title .'</h5></td>';
+            $box .= '    <td>'. $direccion .'</td>';
+            $box .= '</tr>';
 
 		    $pelicula_query = new WP_Query(array(
 				'post_type' => 'pelicula',
@@ -66,15 +125,22 @@ function get_peliculas_by_query($ciudad){
 			));
 		    while ( $pelicula_query->have_posts() ) {
 				$pelicula_query->the_post();
-				$box .= '                <tr>';
-			    $box .= '                    <td>Flores</td>';
-			    $box .= '                    <td>5:00 pm</td>';
-			    $box .= '                </tr>';
+				$horarios = get_post_meta($post->ID, '_horarios', true);
+				foreach ($horarios as $key => $horario) {
+					$date = new DateTime($horario['fecha'] . " " . $horario['hora']);
+					$hora = date_format($date, 'g:ia');
+					if ($horario['teatro'] == $title && $fecha == new DateTime($horario['fecha'])) {
+						$box .= '                <tr>';
+			    		$box .= '                    <td>'. get_the_title() .'</td>';
+			    		$box .= '                    <td>'. $hora .'</td>';
+			    		$box .= '                </tr>';
+					}
+				}
 			}
-		    $box .= '            </tbody>';
-		    $box .= '        </table>';
-		    $box .= '    </div>';
-		    $box .= '</div>';
+		    $box .= '<tr class="espacio">';
+          	$box .= '	<td>&nbsp;&nbsp;</td>';
+          	$box .= '	<td>&nbsp;&nbsp;</td>';
+        	$box .= '</tr>';
 		}
 		wp_reset_postdata();
 	}
@@ -326,6 +392,7 @@ function create_apoyo_type() {
 }
 
 add_action('init', 'create_pelicula_type');
+
 function create_pelicula_type() {
 	register_post_type('pelicula', array(
 		'labels' => array(

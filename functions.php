@@ -196,15 +196,6 @@ function save_taxonomy_custom_meta( $term_id ) {
 add_action( 'edited_category', 'save_taxonomy_custom_meta', 10, 2 );  
 add_action( 'create_category', 'save_taxonomy_custom_meta', 10, 2 );
 
-function register_my_menus() {
-  register_nav_menus(
-    array(
-      'main-menu' => __( 'Menu Principal' ),
-    )
-  );
-}
-add_action( 'init', 'register_my_menus' );
-
 function home_fn($atts){
 
 	$cat_id = get_option('category_home');
@@ -924,7 +915,7 @@ add_action('save_post', 'wpt_save_subtitulo_meta', 1, 2);
 function theme_settings_page() {
 	?>
 	    <div class="wrap">
-	    <h1>Configuración de pautas</h1>
+	    <h1>Configuración de Eurocine</h1>
 	    <form method="post" action="options.php" enctype="multipart/form-data">
 	        <?php
 	            settings_fields("section");
@@ -937,7 +928,7 @@ function theme_settings_page() {
 }
 
 function add_theme_menu_item() {
-	add_menu_page("Pautas", "Pautas", "manage_options", "theme-panel", "theme_settings_page", null, 99);
+	add_menu_page("Configuraciones Eurocine", "Configuraciones", "manage_options", "theme-panel", "theme_settings_page", null, 99);
 }
 
 add_action("admin_menu", "add_theme_menu_item");
@@ -970,6 +961,24 @@ function display_festival_pauta_element() {
 function display_programacion_pauta_element() {
 	?>
     	<input type="text" name="programacion_url" id="programacion_url" value="<?php echo get_option('programacion_url'); ?>" />
+    <?php
+}
+
+function display_amigos_menu_element() {
+	?>
+    	<input type="text" name="amigos_menu_url" id="amigos_menu_url" value="<?php echo get_option('amigos_menu_url'); ?>" />
+    <?php
+}
+
+function display_festival_menu_element() {
+	?>
+    	<input type="text" name="festival_menu_url" id="festival_menu_url" value="<?php echo get_option('festival_menu_url'); ?>" />
+    <?php
+}
+
+function display_eurofilmpedia_menu_element() {
+	?>
+    	<input type="text" name="eurofilmpedia_menu_url" id="eurofilmpedia_menu_url" value="<?php echo get_option('eurofilmpedia_menu_url'); ?>" />
     <?php
 }
 
@@ -1089,6 +1098,14 @@ function display_theme_panel_fields() {
     add_settings_field("img_programacion", "Programacion imagen pauta", "programacion_img_display", "theme-options", "section");
     add_settings_field("page_programacion", "Festival programacion pagina", "festival_prog_display", "theme-options", "section");
     add_settings_field("category_home", "Home categoria", "home_category_display", "theme-options", "section");
+    
+    add_settings_field("amigos_menu_url", "Amigos menu Url", "display_amigos_menu_element", "theme-options", "section");
+    add_settings_field("festival_menu_url", "Festival menu Url", "display_festival_menu_element", "theme-options", "section");
+    add_settings_field("eurofilmpedia_menu_url", "Eurofilmpedia menu Url", "display_eurofilmpedia_menu_element", "theme-options", "section");
+
+    register_setting("section", "amigos_menu_url");
+    register_setting("section", "festival_menu_url");
+    register_setting("section", "eurofilmpedia_menu_url");
 
     register_setting("section", "category_home");
     register_setting("section", "page_programacion");

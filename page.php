@@ -13,6 +13,24 @@
     <!--Let browser know website is optimized for mobile-->
     <title>Eurocine</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <?php wp_head(); ?>
+    <style type="text/css">
+        .aligncenter {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .alignleft {
+            float: left;
+            margin: 0.5em 1em 0.5em 0;
+        }
+
+        .alignright {
+            float: right;
+            margin: 0.5em 0 0.5em 1em;
+        }
+    </style>
 </head>
 
 <body>

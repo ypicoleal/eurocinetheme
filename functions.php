@@ -35,24 +35,25 @@ function festival_programacion_fn($atts){
 	$template = str_replace("{{horarios}}", get_peliculas_by_query($ciudad, $date), $template);
 	$template = str_replace("{{ciudad}}", $ciudad, $template);
 	$template = str_replace("{{fecha}}", $dia, $template);
+	$template = str_replace("{{pauta-img}}", get_option('img_programacion'), $template);
+	$template = str_replace("{{pauta-url}}", get_option('programacion_url'), $template);
 	return $template;
 }
 
 function festival_fn($atts){
-	
+	$url_programacion = get_permalink(get_option('page_programacion'));
 	$template = file_get_contents(get_template_directory() . '/html/festival_principal.html', true);
 	$url_template = get_bloginfo('template_directory');
 	$template = str_replace("{{template_directory}}", $url_template, $template);
 	$template = str_replace("{{peliculas}}", get_peliculas_slider(), $template);
-	//$template = str_replace("{{ciudad}}", $ciudad, $template);
-	//$template = str_replace("{{fecha}}", $dia, $template);
+	$template = str_replace("{{url_programacion}}", $url_programacion, $template);
 	return $template;
 }
 
 function get_peliculas_slider(){
     $the_query = new WP_Query(array(
 			'post_type' => 'pelicula',
-			//'orderby'	=> 'rand',
+			'orderby'	=> 'rand',
 			'posts_per_page' => 20,
 		));
     $counter = 0;
@@ -205,6 +206,9 @@ function register_my_menus() {
 add_action( 'init', 'register_my_menus' );
 
 function home_fn($atts){
+
+	$cat_id = get_option('category_home');
+
 	$template = file_get_contents(get_template_directory() . '/html/home.html', true);
 	$url_template = get_bloginfo( 'template_directory' );
 	$template = str_replace("{{template_directory}}", $url_template, $template);
@@ -213,6 +217,8 @@ function home_fn($atts){
 	$template = str_replace("{{pauta-img}}", get_option('img_home'), $template);
 	$template = str_replace("{{pauta-url}}", get_option('home_url'), $template);
 	$template = str_replace("{{slider-superior}}", get_slide_superior(), $template);
+	$template = str_replace("{{category_name}}", get_cat_name($cat_id), $template);
+	$template = str_replace("{{category_posts}}", get_home_cat_posts($cat_id), $template);
 	return $template;
 }
 
@@ -233,6 +239,35 @@ function get_peliculas(){
 	            $box .= '        <h5 class="center">'. get_the_title() .'</h5>';
 	            $box .= '    </a>';
 	            $box .= '</div>';
+			}
+			wp_reset_postdata();
+		}
+    return $box;
+}
+
+function get_home_cat_posts($cat_id){
+    $the_query = new WP_Query(array(
+			'post_type' 	 => 'post',
+			'orderby'		 => 'rand',
+			'posts_per_page' => 2,
+			'category'  	 => $cat_id,
+		));
+
+	$box = '';
+		if ( $the_query->have_posts() ) {
+			while ( $the_query->have_posts() ) {
+				$the_query->the_post();
+				$box .='<div class="col l6 s12 ">';
+			    $box .='    <div class="row">';
+			    $box .='        <div class="col s12 color-eventos caja-contenido cont-left">';
+			    $box .='        	<a href="'. get_the_permalink() .'"><img src="'. get_the_post_thumbnail_url() .'" style="width:100%; height:100%;"></a>';
+			    $box .='        </div>';
+			    $box .='        <div class="col s12 cont-left">';
+			    $box .='          <p> <div class="gris">'. get_the_category()[0]->name .'</div> '. get_the_date() .'</p>';
+			    $box .='          <div class="titulo-media">'. get_the_title() .'</div>';
+			    $box .='        </div>';
+			    $box .='    </div>';
+			    $box .='</div>';
 			}
 			wp_reset_postdata();
 		}
@@ -287,7 +322,7 @@ function get_apoyos(){
 			    	$box .='    <div class="row margin-bottom-0 fila1">'. PHP_EOL;
 				}
 				
-			    $box .='        <div class="col l2 s12 white caja-p" >'. PHP_EOL;
+			    $box .='        <div class="col l2 s12 caja-p" >'. PHP_EOL;
 			    $box .='            <a href="'. $url .'" target="_blank"><img src="'. get_the_post_thumbnail_url() .'" alt=""></a>'. PHP_EOL;
 			    $box .='        </div>'. PHP_EOL;
 			    if ($counter == 4) {
@@ -757,7 +792,6 @@ function add_slide_menu() {
 
 add_action('admin_menu', 'add_slide_menu');
 
-
 function add_url_patrocinador_metabox() {
 	add_meta_box('wpt_slide_patrocinador_url', 'URL del Slide', 'wpt_slide_url', 'slide-patrocinador', 'normal', 'default');
 }
@@ -894,7 +928,7 @@ function theme_settings_page() {
 	    <form method="post" action="options.php" enctype="multipart/form-data">
 	        <?php
 	            settings_fields("section");
-	            do_settings_sections("theme-options");      
+	            do_settings_sections("theme-options");
 	            submit_button(); 
 	        ?>          
 	    </form>
@@ -930,6 +964,12 @@ function display_eurofilmpedia_pauta_element() {
 function display_festival_pauta_element() {
 	?>
     	<input type="text" name="festival_url" id="festival_url" value="<?php echo get_option('festival_url'); ?>" />
+    <?php
+}
+
+function display_programacion_pauta_element() {
+	?>
+    	<input type="text" name="programacion_url" id="programacion_url" value="<?php echo get_option('programacion_url'); ?>" />
     <?php
 }
 
@@ -973,8 +1013,55 @@ function festival_img_display(){
    <?php
 }
 
+function programacion_img_display(){
+	?>
+		<img src="<?php echo get_option('img_programacion'); ?>" width="100" /><br>
+        <input type="file" name="img_programacion" />
+   <?php
+}
+
+function festival_prog_display(){
+	?>
+        <select name="page_programacion">
+		<?php
+			$pages = new WP_Query(array(
+				'post_type' => 'page',
+				'posts_per_page' => -1
+			));
+			while ($pages->have_posts()) {
+				$pages->the_post();
+				$selected = get_option('page_programacion') == get_the_ID()? 'selected':'';
+				echo '<option value="'. get_the_ID() .'" '. $selected .'>'. get_the_title() .'</option>';
+			}
+			wp_reset_postdata();
+		?>
+	</select>
+   <?php
+}
+
+function home_category_display(){
+	?>
+        <select name="category_home">
+		<?php
+			$categories = get_categories( array(
+                'hide_empty'   => 0
+            ));
+			foreach( $categories as $category ) {
+				$t_id = $category->term_id;
+				$selected = get_option('category_home') == $t_id? 'selected':'';
+				echo '<option value="'. $t_id .'" '. $selected .'>'. esc_html($category->name) .'</option>';
+			}
+		?>
+	</select>
+   <?php
+}
+
 function handle_img_festival_upload(){
 	return handle_img_upload("img_festival");
+}
+
+function handle_img_programacion_upload(){
+	return handle_img_upload("img_programacion");
 }
 
 function handle_img_upload($name){
@@ -989,7 +1076,7 @@ function handle_img_upload($name){
 
 function display_theme_panel_fields() {
 	add_settings_section("section", "Pautas", null, "theme-options");
-	
+
 	add_settings_field("home_url", "Home pauta Url", "display_home_pauta_element", "theme-options", "section");
 	add_settings_field("img_home", "Home imagen pauta", "home_img_display", "theme-options", "section");
     add_settings_field("amigos_url", "Nuestros amigos pauta Url", "display_amigos_pauta_element", "theme-options", "section");
@@ -998,15 +1085,23 @@ function display_theme_panel_fields() {
     add_settings_field("img_eurofilmpedia", "Eurofilmpedia imagen pauta", "eurofilmpedia_img_display", "theme-options", "section");
     add_settings_field("festival_url", "Festival pauta Url", "display_festival_pauta_element", "theme-options", "section");
     add_settings_field("img_festival", "Festival imagen pauta", "festival_img_display", "theme-options", "section");
+    add_settings_field("programacion_url", "Programacion pauta Url", "display_programacion_pauta_element", "theme-options", "section");
+    add_settings_field("img_programacion", "Programacion imagen pauta", "programacion_img_display", "theme-options", "section");
+    add_settings_field("page_programacion", "Festival programacion pagina", "festival_prog_display", "theme-options", "section");
+    add_settings_field("category_home", "Home categoria", "home_category_display", "theme-options", "section");
 
+    register_setting("section", "category_home");
+    register_setting("section", "page_programacion");
     register_setting("section", "home_url");
     register_setting("section", "amigos_url");
     register_setting("section", "eurofilmpedia_url");
     register_setting("section", "festival_url");
+    register_setting("section", "programacion_url");
     register_setting("section", "img_home", "handle_img_home_upload");
     register_setting("section", "img_amigos", "handle_img_amigos_upload");
     register_setting("section", "img_eurofilmpedia", "handle_img_eurofilmpedia_upload");
     register_setting("section", "img_festival", "handle_img_festival_upload");
+    register_setting("section", "img_programacion", "handle_img_programacion_upload");
 }
 
 add_action("admin_init", "display_theme_panel_fields");

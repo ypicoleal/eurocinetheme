@@ -122,11 +122,11 @@ main {
 }
 
 .caja-pauta{
-  height: 175px;
+  height: 235px;
 }
 
 .caja-patrocinador{
-  height: 220px;
+  height: 235px;
 }
 
 .contactenos p:first-child {
@@ -187,6 +187,12 @@ main {
 
 .cont-slider-patrocinador .slider .slides li img, .cont-slider-equipo .slider .slides li img{
    background-size: cover;
+   -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+   filter: grayscale(100%);
+}
+.cont-slider-patrocinador .slider .slides li img:hover, .cont-slider-equipo .slider .slides li img:hover{
+   -webkit-filter: none; /* Safari 6.0 - 9.0 */
+   filter: none;
 }
 
 .cont-slider-patrocinador .slider .indicators{
@@ -201,6 +207,7 @@ main {
 
 .col-patrocinador{
   padding-left: 0px !important;
+  padding-right: 20px !important;
 }
 
 .col-patrocinador .titulos{
@@ -209,6 +216,7 @@ main {
 
 .col-equipo{
   padding-right: 0px !important;
+  padding-left: 20px !important;
 }
 
 .col-equipo .titulos{
@@ -543,6 +551,7 @@ Colores
 
 .color-pauta {
   background-color: #ed433d;
+  padding: 0px;
 }
 
 .color-patrocinador{

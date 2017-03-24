@@ -7,7 +7,7 @@
 }
 
 .btn-full{
-  width: 100%;
+  width: 338px;
 }
 
 .btn:hover{
@@ -90,7 +90,7 @@
 }
 
 .peliculas  .caja-peli a img{
-    width: 100%;
+    width: 90%;
 }
 
 .cont-peli-padre{
@@ -196,6 +196,10 @@
     .categoria, .titulo-pelicula{
       text-align: center;
     }
+
+    .collection{
+      width: auto;
+    }
 }
 
 .cb_calendar_control{
@@ -204,6 +208,13 @@
 
 .cb_calendar_contain{
     padding: 0 70px;
+    background-image: url("../img/fondocalendario2.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding-top: 50px;
+    width: 338px;
+    height: 308px;
 }
 
 

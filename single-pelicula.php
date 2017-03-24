@@ -66,7 +66,7 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col s12 color-patrocinador caja-patrocinador">
+                  <div class="col s12 color-patrocinador caja-patrocinador" style="padding: 0;">
                     <a href="<?php echo get_option('festival_url'); ?>" target="_blank">
                         <img src="<?php echo get_option('img_festival'); ?>" style="width: 100%; height: 100%;" />
                     </a>

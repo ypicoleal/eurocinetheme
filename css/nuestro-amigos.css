@@ -14,13 +14,13 @@
 }
 
 .caja-apoyo .caja-p{
-  background-color: #fff;
+  text-align: center;
 }
 
 .fila1, .fila2{
   display: flex;
-  -webkit-justify-content: space-between;
-  justify-content: space-between;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
   margin: 0px;
   margin-left: 0px !important;
   margin-right: 0px !important;
@@ -51,9 +51,21 @@
   margin-right: 0px;
 }
 
+.caja-apoyo div div{
+  margin-top: 5px;
+}
+
 .caja-apoyo .caja-p a img{
-    height: 100%;
-    width: 100%;
+    height: 120px;
+    width: 109px;
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+}
+
+
+.caja-apoyo .caja-p a img:hover{
+    -webkit-filter: none; /* Safari 6.0 - 9.0 */
+    filter: none;
 }
 
 .padding-0{

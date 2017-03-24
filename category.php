@@ -114,9 +114,9 @@
                     <?php $flag = !$flag; ?>
                     <?php  endwhile; endif; ?>
                     <?php if(!$flag): ?>
-                        <div class="col l6 s12 ">
+                        <div class="col l6 s12 " >
                             <div class="row full-height">
-                                <div class="col l11 s12 color-pauta full-height">
+                                <div class="col l11 s12 full-height" style="padding: 0;">
                                     <a href="<?php echo get_option('eurofilmpedia_url'); ?>" target="_blank">
                                         <img src="<?php echo get_option('img_eurofilmpedia'); ?>" style="width: 100%; height: 100%;" />
                                     </a>
@@ -128,8 +128,10 @@
                         <div class="row">
                             <div class="col l6 s12 ">
                                 <div class="row full-height">
-                                    <div class="col l11 s12 color-pauta full-height">
-
+                                    <div class="col l11 s12 full-height" style="padding: 0;">
+                                        <a href="<?php echo get_option('eurofilmpedia_url'); ?>" target="_blank">
+                                            <img src="<?php echo get_option('img_eurofilmpedia'); ?>" style="width: 100%; height: 100%;" />
+                                        </a>
                                     </div>
                                 </div>
                             </div>

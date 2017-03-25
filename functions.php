@@ -4,6 +4,7 @@
 add_theme_support( 'post-thumbnails' );
 add_shortcode( 'amigos', 'amigos_fn' );
 add_shortcode( 'home', 'home_fn' );
+add_shortcode( 'home_temporal', 'home_temporal_fn' );
 add_shortcode( 'festival_programacion', 'festival_programacion_fn' );
 add_shortcode( 'festival', 'festival_fn' );
 
@@ -76,7 +77,7 @@ function get_peliculas_slider(){
                 $box .= '    <a href="'. get_the_permalink() .'"><img src="'. get_the_post_thumbnail_url() .'" alt="">'. PHP_EOL;
                 $box .= '        <h6 class="center white-text">'. get_the_title() .'</h6></a>'. PHP_EOL;
                 $box .= '</div>'. PHP_EOL;
-			    if ($counter == 9) {
+			    if ($counter == 7) {
 			    	$box .= '			</div>'. PHP_EOL;
                     $box .= '        </div>'. PHP_EOL;
                     $box .= '    </div>'. PHP_EOL;
@@ -86,7 +87,7 @@ function get_peliculas_slider(){
 			    	$counter++;
 			    }
 			}
-			if ($counter < 9) {
+			if ($counter < 7) {
 		    	$box .= '			</div>'. PHP_EOL;
                 $box .= '        </div>'. PHP_EOL;
                 $box .= '    </div>'. PHP_EOL;
@@ -113,10 +114,11 @@ function get_peliculas_by_query($ciudad, $fecha){
 		while ( $the_query->have_posts() ) {
 			$the_query->the_post();
 			$direccion = get_post_meta($post->ID, '_direccion', true);
+			$telefono = get_post_meta($post->ID, '_telefono', true);
 			$title = get_the_title();
 
 			$box .= '<tr>';
-            $box .= '    <td><h5>'. $title .'</h5></td>';
+            $box .= '    <td><h5>'. $title .'</h5>'. 'Tel: ' . $telefono . '</td>';
             $box .= '    <td>'. $direccion .'</td>';
             $box .= '</tr>';
 
@@ -213,6 +215,13 @@ function home_fn($atts){
 	return $template;
 }
 
+function home_temporal_fn($atts){
+	$template = file_get_contents(get_template_directory() . '/html/home_temporal.html', true);
+	$url_template = get_bloginfo( 'template_directory' );
+	$template = str_replace("{{template_directory}}", $url_template, $template);
+	return $template;
+}
+
 function get_peliculas(){
     $the_query = new WP_Query(array(
 			'post_type' => 'pelicula',
@@ -239,7 +248,6 @@ function get_peliculas(){
 function get_home_cat_posts($cat_id){
     $the_query = new WP_Query(array(
 			'post_type' 	 => 'post',
-			'orderby'		 => 'rand',
 			'posts_per_page' => 2,
 			'category'  	 => $cat_id,
 		));
@@ -254,8 +262,9 @@ function get_home_cat_posts($cat_id){
 			    $box .='        	<a href="'. get_the_permalink() .'"><img src="'. get_the_post_thumbnail_url() .'" style="width:100%; height:100%;"></a>';
 			    $box .='        </div>';
 			    $box .='        <div class="col s12 cont-left">';
-			    $box .='          <p> <div class="gris">'. get_the_category()[0]->name .'</div> '. get_the_date() .'</p>';
-			    $box .='          <div class="titulo-media">'. get_the_title() .'</div>';
+			    $box .='          <p> <span class="verde">'. get_the_category()[0]->name .'</span> '. get_the_date() .'</p>';
+			    $box .='          <p class="titulo-media-1">'. get_the_title() .'</p>';
+			    $box .='		  <p class="subtitulo-media">'. get_post_meta(get_the_ID(), '_subtitulo', true) . '</p>';
 			    $box .='        </div>';
 			    $box .='    </div>';
 			    $box .='</div>';
@@ -282,8 +291,9 @@ function get_contenidos(){
 			    $box .='        	<a href="'. get_the_permalink() .'"><img src="'. get_the_post_thumbnail_url() .'" style="width:100%; height:100%;"></a>';
 			    $box .='        </div>';
 			    $box .='        <div class="col s12 cont-rigth">';
-			    $box .='          <p> <div class="verde">'. get_the_category()[0]->name .'</div> '. get_the_date() .'</p>';
-			    $box .='          <div class="titulo-media">'. get_the_title() .'</div>';
+			    $box .='          <p> <span class="verde">'. get_the_category()[0]->name .'</span> '. get_the_date() .'</p>';
+			    $box .='          <p class="titulo-media-1">'. get_the_title() .'</p>';
+			    $box .='		  <p class="subtitulo-media">'. get_post_meta(get_the_ID(), '_subtitulo', true) . '</p>';
 			    $box .='        </div>';
 			    $box .='    </div>';
 			    $box .='</div>';
@@ -504,6 +514,7 @@ function wpt_teatro_metabox() {
 
 	$ciudad = get_post_meta($post->ID, '_ciudad', true);
 	$direccion = get_post_meta($post->ID, '_direccion', true);
+	$telefono = get_post_meta($post->ID, '_telefono', true);
 	// Echo out the field
 
 	?>
@@ -514,9 +525,13 @@ function wpt_teatro_metabox() {
 		<option <?php echo $ciudad == 'Cali'? 'selected': ''; ?> >Cali</option>
 		<option <?php echo $ciudad == 'Barranquilla'? 'selected': ''; ?> >Barranquilla</option>
 		<option <?php echo $ciudad == 'Pereira'? 'selected': ''; ?> >Pereira</option>
+		<option <?php echo $ciudad == 'Cajicá'? 'selected': ''; ?> >Cajicá</option>
+		<option <?php echo $ciudad == 'Bucaramanga'? 'selected': ''; ?> >Bucaramanga</option>
 	</select>
 	<span class="title">Direccion</span>
 	<input type="text" name="_direccion" class="widefat" value="<?php echo $direccion ?>" />
+	<span class="title">Telefono</span>
+	<input type="text" name="_telefono" class="widefat" value="<?php echo $telefono ?>" />
 	<?php
 }
 
@@ -565,20 +580,23 @@ function wpt_pelicula_hora_metabox	() {
 	?>
 	<span class="title" style="font-weight: bold;">Agregados</span>
 	<div class="widefat" id="hor_cont">
-		<?php foreach ($horarios as $key => $horario) {
-			$count = count($horarios);
-			$meses = array(1=>"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-			$date = new DateTime($horario['fecha'] . " " . $horario['hora']);
-			$mes = date('n',$date->getTimestamp());
-   			$dia = date('d',$date->getTimestamp());
-			$dia = $meses[$mes].' '. $dia;
-			$hora = date_format($date, 'g:ia');
-			echo '<p class="widefat horario" index="'.($key + 1).'">'. $horario['ciudad'] .', '. $dia .', '. $horario['teatro'] .', '. $hora .'<a index="'.($key + 1).'" class="hor_del"><img src="'. get_template_directory_uri() .'/img/delete.svg" /></a></p>';
-			echo '<input type="hidden" name="_ciudad_'.($key + 1).'" index="'.($key + 1).'" value="'.$horario['ciudad'].'"/>';
-			echo '<input type="hidden" name="_teatro_'.($key + 1).'" index="'.($key + 1).'" value="'.$horario['teatro'].'"/>';
-			echo '<input type="hidden" name="_fecha_'.($key + 1).'" index="'.($key + 1).'" value="'.$horario['fecha'].'"/>';
-			echo '<input type="hidden" name="_hora_'.($key + 1).'" index="'.($key + 1).'" value="'.$horario['hora'].'"/>';
+		<?php 
+		if ($horarios) {
+			foreach ($horarios as $key => $horario) {
+				$count = count($horarios);
+				$meses = array(1=>"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+				$date = new DateTime($horario['fecha'] . " " . $horario['hora']);
+				$mes = date('n',$date->getTimestamp());
+	   			$dia = date('d',$date->getTimestamp());
+				$dia = $meses[$mes].' '. $dia;
+				$hora = date_format($date, 'g:ia');
+				echo '<p class="widefat horario" index="'.($key + 1).'">'. $horario['ciudad'] .', '. $dia .', '. $horario['teatro'] .', '. $hora .'<a index="'.($key + 1).'" class="hor_del"><img src="'. get_template_directory_uri() .'/img/delete.svg" /></a></p>';
+				echo '<input type="hidden" name="_ciudad_'.($key + 1).'" index="'.($key + 1).'" value="'.$horario['ciudad'].'"/>';
+				echo '<input type="hidden" name="_teatro_'.($key + 1).'" index="'.($key + 1).'" value="'.$horario['teatro'].'"/>';
+				echo '<input type="hidden" name="_fecha_'.($key + 1).'" index="'.($key + 1).'" value="'.$horario['fecha'].'"/>';
+				echo '<input type="hidden" name="_hora_'.($key + 1).'" index="'.($key + 1).'" value="'.$horario['hora'].'"/>';
 
+			}
 		} ?>
 	</div><br><br>
 	<script type="text/javascript">
@@ -602,6 +620,8 @@ function wpt_pelicula_hora_metabox	() {
 		<option>Cali</option>
 		<option>Barranquilla</option>
 		<option>Pereira</option>
+		<option>Cajicá</option>
+		<option>Bucaramanga</option>
 	</select>
 	<span class="title">Teatro</span>
 	<select name="_teatro" value="" class="widefat" id="teatro_sel">
@@ -695,6 +715,7 @@ function wpt_save_teatro_meta($post_id, $post) {
 	
 	$events_meta['_ciudad'] = $_POST['_ciudad'];
 	$events_meta['_direccion'] = $_POST['_direccion'];
+	$events_meta['_telefono'] = $_POST['_telefono'];
 	
 	// Add values of $events_meta as custom fields
 	

@@ -134,7 +134,7 @@ function get_peliculas_by_query($ciudad, $fecha){
 					$hora = date_format($date, 'g:ia');
 					if ($horario['teatro'] == $title && $fecha == new DateTime($horario['fecha'])) {
 						$box .= '                <tr>';
-			    		$box .= '                    <td>'. get_the_title() .'</td>';
+			    		$box .= '                    <td><a href="'. get_the_permalink() .'" style="color: #606060;">'. get_the_title() .'</a></td>';
 			    		$box .= '                    <td>'. $hora .'</td>';
 			    		$box .= '                </tr>';
 					}

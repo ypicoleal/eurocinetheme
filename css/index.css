@@ -4,12 +4,12 @@
 }
 
 .opcion2 {
-    background-image: url("../img/menu/nuestrosamigos1_1024.png");
+    background-image: url("../img/menu/Festival1_1024.png");
     height: 48px;
 }
 
 .opcion3 {
-    background-image: url("../img/menu/Festival1_1024.png");
+    background-image: url("../img/menu/nuestrosamigos1_1024.png");
     height: 48px;
 }
 
@@ -23,11 +23,11 @@
 }
 
 .opcion2:hover {
-    background-image: url("../img/menu/nuestrosamigos2_1024.png");
+    background-image: url("../img/menu/Festival2_1024.png");
 }
 
 .opcion3:hover {
-    background-image: url("../img/menu/Festival2_1024.png");
+    background-image: url("../img/menu/nuestrosamigos2_1024.png");
 }
 
 .opcion4:hover {

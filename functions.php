@@ -335,6 +335,9 @@ function get_apoyos(){
 			    }
 			}
 			if ($counter < 4) {
+				for ($i=$counter; $i < 5; $i++) { 
+					$box .= '<div class="col l2 s12 caja-p"></div>';
+				}
 		    	$box .='     </div>'. PHP_EOL;
 		    	$box .='</div>'. PHP_EOL;
 		    	$counter == 0;

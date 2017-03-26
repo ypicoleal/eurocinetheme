@@ -58,10 +58,10 @@
                             <a href="<?php echo get_home_url(); ?>" class="opcion1"></a>
                         </li>
                         <li>
-                            <a href="<?php echo get_option('amigos_menu_url'); ?>" class="opcion2"></a>
+                            <a href="<?php echo get_option('festival_menu_url'); ?>" class="opcion2"></a>
                         </li>
                         <li>
-                            <a href="<?php echo get_option('festival_menu_url'); ?>" class="opcion3"></a>
+                            <a href="<?php echo get_option('amigos_menu_url'); ?>" class="opcion3"></a>
                         </li>
                         <li>
                             <a href="<?php echo get_option('eurofilmpedia_menu_url'); ?>" class="opcion4"></a>

@@ -57,16 +57,16 @@
                 <div class="social">
                     <ul>
                         <li>
-                            <a href="https://www.facebook.com/eurocinecolombia/" target="_blank"><img src="<?php bloginfo( 'template_directory' );?>/img/social/F1_1024.png" alt="Facebook"></a>
+                            <a href="https://www.facebook.com/eurocinecolombia/" target="_blank"><img id="ic_facebook" src="<?php bloginfo( 'template_directory' );?>/img/social/F1_1024.png" alt="Facebook"></a>
                         </li>
                         <li>
-                            <a href="https://www.instagram.com/eurocinecolombia/" target="_blank"><img src="<?php bloginfo( 'template_directory' );?>/img/social/I1_1024.png"   alt="Instagram"></a>
+                            <a href="https://www.instagram.com/eurocinecolombia/" target="_blank"><img id="ic_instagram" src="<?php bloginfo( 'template_directory' );?>/img/social/I1_1024.png"   alt="Instagram"></a>
                         </li>
                         <li>
-                            <a href="https://twitter.com/EUROCINE_Col" target="_blank"><img src="<?php bloginfo( 'template_directory' );?>/img/social/T1_1024.png" alt="Twitter"></a>
+                            <a href="https://twitter.com/EUROCINE_Col" target="_blank"><img id="ic_twitter" src="<?php bloginfo( 'template_directory' );?>/img/social/T1_1024.png" alt="Twitter"></a>
                         </li>
                         <li>
-                            <a href="https://www.youtube.com/channel/UCC8so8MpAfFqrd2ml40anFA" target="_blank"><img src="<?php bloginfo( 'template_directory' );?>/img/social/Y1_1024.png" alt="Youtube"></a>
+                            <a href="https://www.youtube.com/channel/UCC8so8MpAfFqrd2ml40anFA" target="_blank"><img id="ic_youtube" src="<?php bloginfo( 'template_directory' );?>/img/social/Y1_1024.png" alt="Youtube"></a>
                         </li>
                     </ul>
                 </div>

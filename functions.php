@@ -323,7 +323,7 @@ function get_apoyos(){
 			    	$box .='    <div class="row margin-bottom-0 fila1">'. PHP_EOL;
 				}
 				
-			    $box .='        <div class="col l2 s12 caja-p" >'. PHP_EOL;
+			    $box .='        <div class="col l2 m2 s12 caja-p" >'. PHP_EOL;
 			    $box .='            <a href="'. $url .'" target="_blank"><img src="'. get_the_post_thumbnail_url() .'" alt=""></a>'. PHP_EOL;
 			    $box .='        </div>'. PHP_EOL;
 			    if ($counter == 4) {
@@ -336,7 +336,7 @@ function get_apoyos(){
 			}
 			if ($counter < 4) {
 				for ($i=$counter; $i < 5; $i++) { 
-					$box .= '<div class="col l2 s12 caja-p"></div>';
+					$box .= '<div class="col l2 m2 s12 caja-p"></div>';
 				}
 		    	$box .='     </div>'. PHP_EOL;
 		    	$box .='</div>'. PHP_EOL;

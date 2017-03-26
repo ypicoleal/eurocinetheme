@@ -34,13 +34,13 @@
 }
 
 .fila1 .caja-p{
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .fila2 .caja-p{
-  margin-top: 10px;
-  margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .fila1 .caja-p:first-child, .fila2 .caja-p:first-child{
@@ -56,8 +56,8 @@
 }
 
 .caja-apoyo .caja-p a img{
-    height: 120px;
-    width: 109px;
+    height: 121px;
+    width: 110px;
     -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
     filter: grayscale(100%);
 }

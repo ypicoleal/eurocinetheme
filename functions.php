@@ -88,7 +88,6 @@ function get_peliculas_slider(){
 			    }
 			}
 			if ($counter < 7) {
-				echo $counter;
 				$limit = 4;
 				if ($counter > 4) {
 					$limit = 8;

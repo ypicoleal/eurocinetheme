@@ -553,12 +553,14 @@ function wpt_pelicula_metabox() {
 
 	$director = get_post_meta($post->ID, '_director', true);
 	$pais = get_post_meta($post->ID, '_pais', true);
+	$year = get_post_meta($post->ID, '_year', true);
 	$youtube = get_post_meta($post->ID, '_youtube', true);
 
 	// Echo out the field
 
 	echo '<span class="title">Director</span><input type="text" name="_director" value="' . $director . '" class="widefat" />';
 	echo '<span class="title">Pais</span><input type="text" name="_pais" value="' . $pais . '" class="widefat" />';
+	echo '<span class="title">Año</span><input type="text" name="_year" value="' . $year . '" class="widefat" />';
 	echo '<span class="title">URL YouTube</span><input type="text" name="_youtube" value="' . $youtube . '" class="widefat" />';
 }
 
@@ -670,6 +672,8 @@ function wpt_save_pelicula_meta($post_id, $post) {
 	$events_meta['_director'] = $_POST['_director'];
 	$events_meta['_pais'] = $_POST['_pais'];
 	$events_meta['_youtube'] = $_POST['_youtube'];
+	$events_meta['_year'] = $_POST['_year'];
+
 
 	$count = intval($_POST['_num_hor']);
 	$horarios = array();

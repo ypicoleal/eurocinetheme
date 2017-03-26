@@ -107,7 +107,8 @@
                       </div>
                       <div class="col s12 info">
                         <span>Director: <?php echo get_post_meta(get_the_ID(), '_director', true); ?></span><br>
-                        <span>País: <?php echo get_post_meta(get_the_ID(), '_pais', true); ?></span>
+                        <span>País: <?php echo get_post_meta(get_the_ID(), '_pais', true); ?></span><br>
+                        <span>Año: <?php echo get_post_meta(get_the_ID(), '_year', true); ?></span>
                         <p>
                           <?php the_content(); ?>
                         </p>

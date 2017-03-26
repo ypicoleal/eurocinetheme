@@ -51,7 +51,7 @@
 <body>
     <main class="container">
         <div class="row same-height">
-            <div class="col l3 s12 cont-menu">
+            <div class="col m1 l3 s12 cont-menu">
                 <div class="menu">
                     <ul>
                         <li>
@@ -86,7 +86,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col l9 s12 contenido">
+            <div class="col m11 l9 s12 contenido">
                 <div class="">
                     <?php echo do_shortcode('[home]'); ?>
                 </div>

@@ -50,44 +50,49 @@
   box-shadow: none;
   font-size: 1px;
   height: 100%;
-  /*text-align: center;*/
+  background-image: url("../img/felcha_eurofilmpedia.png");
 }
+
 
 .active{
   border-bottom: 5px #2c3b8e solid !important;
 }
 
+nav ul li{
+  display: inline-block;
+  float: none;
+}
+
 .filtros a{
   text-decoration: none;
-  display: inline-block;
-  cursor: pointer;
   text-align: center;
   padding: 0 8px;
   height: 58px;
   margin: 0 8px;
+  width: 98px;
 }
 
-.filtros a:first-child{
+.filtros ul li:first-child a{
     border-bottom: 12px #2168EA solid;
 }
 
-.filtros a:nth-child(2){
+.filtros ul li:nth-child(2) a{
     border-bottom: 12px #2C3B8E solid;
 }
 
-.filtros a:nth-child(3){
+.filtros ul li:nth-child(3) a{
     border-bottom: 12px #FFA500 solid;
 }
 
-.filtros a:nth-child(4){
+.filtros ul li:nth-child(4) a{
     border-bottom: 12px #6D6F71 solid;
 }
 
-.filtros a:nth-child(5){
+.filtros ul li:nth-child(5) a{
     border-bottom: 12px #4FB25F solid;
 }
 
-.filtros a:nth-child(6){
+.filtros ul li:nth-child(6) a{
     border-bottom: 12px #2C3B8E solid;
 }
 
@@ -102,7 +107,7 @@
     margin-left: -16px;
     margin-top: -13px;
     display: block;
-    width: 227%;
+    width: 200%;
 }
 
 .linea.last{
@@ -194,4 +199,12 @@
   .linea.last {
     width: 235%;
   }
+  nav ul li{
+    height: 69px;
+  }
+
+  nav ul{
+    text-align: center;
+  }
+
 }

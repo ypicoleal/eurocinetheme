@@ -440,6 +440,7 @@ function create_pelicula_type() {
 			'add_new' => _x('Añadir nuevo', 'book'),
 			'add_new_item' => __('Añadir nueva Pelicula'),
 		),
+		'menu_icon'   => 'dashicons-format-video',
 		'hierarchical' => true,
 		'public' => true,
 		'show_ui' => true,
@@ -464,6 +465,7 @@ function create_pelicula_type() {
 			'add_new' => _x('Añadir nuevo', 'book'),
 			'add_new_item' => __('Añadir nuevo Teatro'),
 		),
+		'menu_icon'   => 'dashicons-tickets',
 		'public' => true,
 		'has_archive' => true,
 		'hierarchical' => false,
@@ -806,7 +808,7 @@ function create_slide_equipo_type() {
 }
 
 function add_slide_menu() {
-  add_menu_page( 'Slider Eurocine', 'Sliders Eurocine', 'manage_options', 'euro-silides.php');
+  add_menu_page( 'Slider Eurocine', 'Sliders Eurocine', 'manage_options', 'euro-silides.php', '', 'dashicons-images-alt2', 90 );
 }
 
 add_action('admin_menu', 'add_slide_menu');

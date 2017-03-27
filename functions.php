@@ -55,7 +55,7 @@ function get_peliculas_slider(){
     $the_query = new WP_Query(array(
 			'post_type' => 'pelicula',
 			'orderby'	=> 'rand',
-			'posts_per_page' => 20,
+			'posts_per_page' => -1,
 		));
     $counter = 0;
 	$box = '';

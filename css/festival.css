@@ -168,8 +168,13 @@
 @media (max-width: 420px) {
 
     .fila1, .fila2{
-      display: block;
-      justify-content: inherit;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .cont-flecha{
+      padding: 0px !important;
     }
 
     .fila1 .caja-peli:first-child, .fila2 .caja-peli:first-child{

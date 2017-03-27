@@ -90,7 +90,7 @@ function get_peliculas_slider(){
 			if ($counter < 7) {
 				$limit = 4;
 				if ($counter > 4) {
-					$limit = 8;
+					$limit = 9;
 				}
 				for ($i= $counter; $i < $limit; $i++) { 
 					$box .= '<div class="col l2 s12 caja-peli"></div>';

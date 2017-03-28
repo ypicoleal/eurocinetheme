@@ -4,6 +4,7 @@
 <head>
     <!--Import Google Icon Font-->
     <!--Import Google Icon Font-->
+    <meta charset="UTF-8">
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="<?php bloginfo( 'template_directory' );?>/materialize/css/materialize.min.css" media="screen,projection" />

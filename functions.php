@@ -70,6 +70,7 @@ function get_peliculas_slider(){
                     $box .= '            <div class="row margin-0 fila1">' . PHP_EOL;
 				}else if ($counter == 4) {
 					$box .= '</div>';
+					$box .= '</div>';
                     $box .= '<div class="col s6 m12 l12 padding-0">';
                     $box .= '    <div class="row margin-0  fila2">';
 				}
@@ -219,6 +220,10 @@ function home_fn($atts){
 	$template = str_replace("{{slider-superior}}", get_slide_superior(), $template);
 	$template = str_replace("{{category_name}}", get_cat_name($cat_id), $template);
 	$template = str_replace("{{category_posts}}", get_home_cat_posts($cat_id), $template);
+	$template = str_replace("{{amigos-url}}", get_option('amigos_menu_url'), $template);
+	$template = str_replace("{{eurofilmpedia-url}}", get_option('eurofilmpedia_menu_url'), $template);
+	$template = str_replace("{{festival-url}}", get_option('festival_menu_url'), $template);
+	$template = str_replace("{{cat-url}}", esc_url(get_category_link( $cat_id )), $template);
 	return $template;
 }
 

@@ -307,7 +307,7 @@ a.control_prev:hover, a.control_next:hover {
   }
 
   .peliculas  .caja-peli a img{
-      width: 90%;
+      width: 96px;
       height: 150px;
   }
   .peliculas  .caja-peli a img:hover{
@@ -322,7 +322,7 @@ a.control_prev:hover, a.control_next:hover {
 @media (max-width: 768px) {
 
   .peliculas  .caja-peli a img{
-      width: 90%;
+      width: 81px;
       height: 135px;
   }
   .peliculas  .caja-peli a img:hover{
@@ -379,7 +379,7 @@ a.control_prev:hover, a.control_next:hover {
       width: 100%;
     }
     .peliculas  .caja-peli a img{
-        width: 90%;
+        width: 116px;
         height: 160px;
     }
     .peliculas  .caja-peli a img:hover{

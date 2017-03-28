@@ -1,39 +1,39 @@
- <footer class="container">
-          <div class="row center-align margin-bottom-0 same-height">
-              <div class="col l3 s6 black white-text contactenos">
-                  <div>
-                      <p>Contactenos</p>
-                      <p>Cra 15 #82 - 58 Ofc</p>
-                      <p class="mail">direccion@festivaleurocine.com</p>
-                      <p class="mail">coordinacion@festivaleurocine.com</p>
-                      <p class="mail copyright">Copyright © 2017 Festival Eurocine</p>
-                  </div>
-              </div>
-              <div class="col s6 footer-movil press-kit rga">
-                  <p>DESCARGAR PRESS KIT Aquí <a href="#" class="icono-descargar" target="_blank"><svg height="20" width="20" viewBox="0 0 210 210">
-  <path d="M210 0 L0 0 L0 210 Z " fill="#000"/>
-  Sorry, your browser does not support inline SVG.
-  </svg></a></p>
-              </div>
-              <div class="col l9  s12">
-                  <div class="container">
+<footer class="container">
+    <div class="row center-align margin-bottom-0 same-height">
+        <div class="col m3 l3 s6 black white-text contactenos">
+            <div>
+                <p>Contactenos</p>
+                <p>Cra 15 #82 - 58 Ofc</p>
+                <p class="mail"><a href="mailto:direccion@festivaleurocine.com">direccion@festivaleurocine.com</a></p>
+                <p class="mail"><a href="mailto:coordinacion@festivaleurocine.com">coordinacion@festivaleurocine.com</a></p>
+                <p class="mail copyright">Copyright © 2017 Festival Eurocine</p>
+            </div>
+        </div>
+        <div class="col s6 footer-movil press-kit rga">
+            <p>DESCARGAR PRESS KIT Aquí <a href="#" class="icono-descargar" target="_blank"><svg height="20" width="20" viewBox="0 0 210 210">
+<path d="M210 0 L0 0 L0 210 Z " fill="#000"/>
+Sorry, your browser does not support inline SVG.
+</svg></a></p>
+        </div>
+        <div class="col m9 l9  s12">
+            <div class="container">
 
-                  </div>
-                  <div class="row cont">
-                      <div class="col l5 s12 press-kit kit descarga">
-                          <p>DESCARGAR PRESS KIT Aquí <a href="#" class="icono-descargar" target="_blank"><svg height="20" width="20" viewBox="0 0 210 210">
-  <path d="M210 0 L0 0 L0 210 Z " fill="#000"/>
-  Sorry, your browser does not support inline SVG.
-  </svg></a></p>
-                      </div>
-                      <div class="col l7 s12 black kit">
+            </div>
+            <div class="row cont">
+                <div class="col m5 l5 s12 press-kit kit descarga">
+                    <p>DESCARGAR PRESS KIT Aquí <a href="#" class="icono-descargar" target="_blank"><svg height="20" width="20" viewBox="0 0 210 210">
+<path d="M210 0 L0 0 L0 210 Z " fill="#000"/>
+Sorry, your browser does not support inline SVG.
+</svg></a></p>
+                </div>
+                <div class="col m7 l7 s12 black kit">
 
-                      </div>
-                      <div class="col s12">
-                          <div class="row">
-                              <div class="col s12">
-                                  <div class="row cont-form valign-wrapper">
-                                      <div class="col l6 s12 valid form wpcf7" id="wpcf7-f3700-o1" lang="es-ES" dir="ltr">
+                </div>
+                <div class="col s12">
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="row cont-form valign-wrapper">
+                                <div class="col l6 s12 valid form wpcf7" id="wpcf7-f3700-o1" lang="es-ES" dir="ltr">
                                           <p class="border center-align activar-hover">EUROCINE MEMBERSHIP</p>
                                           <p class="center-align footer-hover">Ingresa tus datos para estar conectado con Eurocine</p>
                                           <form class="contact-form" action="/wordpress/#wpcf7-f3700-o1" method="post">
@@ -83,13 +83,13 @@
                                               <a class="boing" href="https://www.boingmarketing.net/ring/" target="_blank">By Boing Marketing Sostenible</a>
                                           </p>
                                       </div>
-                                  </div>
-                              </div>
-                          </div>
+                            </div>
+                        </div>
+                    </div>
 
-                      </div>
-                  </div>
-              </div>
-          </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-      </footer>
+</footer>

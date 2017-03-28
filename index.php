@@ -51,7 +51,7 @@
 <body>
     <main class="container">
         <div class="row same-height">
-            <div class="col m1 l3 s12 cont-menu">
+            <div class="col m3 l3 s12 cont-menu">
                 <div class="menu">
                     <ul>
                         <li>

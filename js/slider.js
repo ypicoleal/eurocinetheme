@@ -70,7 +70,7 @@ function menu() {
         $('.cont-menu').removeClass('all-fixed');
         $('.espacio').css('display', 'inherit');
     }, {
-        offset: '100%'
+        offset: '70%'
     });
     $('.modal').modal();
 }
@@ -184,7 +184,7 @@ var slideWidth = $('#slider ul li').width();
 var slideHeight = $('#slider ul li').height();
 var sliderUlWidth = slideCount * slideWidth;
 
-$('#slider').css({ width: "100%", height: "100%" });
+//$('#slider').css({ width: "100%", height: "100%" });
 
 $('#slider ul').css({ width: sliderUlWidth, marginLeft: - slideWidth });
 

@@ -90,7 +90,22 @@
 }
 
 .peliculas  .caja-peli a img{
-    width: 90%;
+    width: 130px;
+    height: 180px;
+   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.peliculas  .caja-peli a img:hover{
+  width: 140px;
+  height: 190px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.peliculas .caja-peli .titulo-pelicula-slider{
+  height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .cont-peli-padre{
@@ -165,47 +180,7 @@
   text-transform: uppercase;
 }
 
-@media (max-width: 420px) {
 
-    .fila1, .fila2{
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-    }
-
-    .cont-flecha{
-      padding: 0px !important;
-    }
-
-    .fila1 .caja-peli:first-child, .fila2 .caja-peli:first-child{
-      margin-left: 0px !important;
-    }
-
-    .fila1 .caja-peli:last-child, .fila2 .caja-peli:last-child{
-      margin-right: 0px;
-    }
-
-    .fila1 .caja-peli, .fila2 .caja-peli{
-        margin-left: 0px !important;
-        margin-right: 0px;
-    }
-
-    .fila1{
-      margin-bottom: 30px !important;
-    }
-
-    .fila2{
-      margin-top: 30px;
-    }
-
-    .categoria, .titulo-pelicula{
-      text-align: center;
-    }
-
-    .collection{
-      width: auto;
-    }
-}
 
 .cb_calendar_control{
    padding-top:  20px;
@@ -257,10 +232,13 @@
     color: black;
 }
 
+
 #slider {
   position: relative;
   overflow: hidden;
   margin: 20px auto 0 auto;
+  width: 100%;
+  height: 100%;
 
 }
 
@@ -292,4 +270,119 @@ a.control_prev:hover, a.control_next:hover {
   margin: 10px auto;
   width: 160px;
   font-size: 18px;
+}
+
+.titulo-p {
+    margin-left: -10px;
+    font-size: 46px;
+    font-family: MyriadPro-Regular;
+    margin-top: -7px;
+    text-transform: uppercase;
+}
+
+.cont-flecha.r{
+  padding-left: 0px !important;
+}
+
+.cont-flecha.l{
+  padding-right: 0px !important;
+}
+
+@media (max-width: 1336px) {
+    .peliculas  .caja-peli a img{
+        width: 120px;
+        height: 170px;
+    }
+}
+
+@media (max-width: 1024px) {
+  .btn-full{
+    width: 100%;
+  }
+
+  .cb_calendar_contain {
+    padding: 0 30px;
+    padding-top: 50px;
+    width: 100%;
+  }
+
+  .peliculas  .caja-peli a img{
+      width: 90%;
+      height: 150px;
+  }
+  .peliculas  .caja-peli a img:hover{
+    width: 100%;
+  }
+
+  #slider{
+    width: 440px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .peliculas  .caja-peli a img{
+      width: 90%;
+      height: 135px;
+  }
+  .peliculas  .caja-peli a img:hover{
+    width: 100%;
+  }
+
+  #slider{
+    width: 400px;
+  }
+}
+
+@media (max-width: 420px) {
+
+    .fila1, .fila2{
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .cont-flecha{
+      padding: 0px !important;
+    }
+
+    .fila1 .caja-peli:first-child, .fila2 .caja-peli:first-child{
+      margin-left: 0px !important;
+    }
+
+    .fila1 .caja-peli:last-child, .fila2 .caja-peli:last-child{
+      margin-right: 0px;
+    }
+
+    .fila1 .caja-peli, .fila2 .caja-peli{
+        margin-left: 0px !important;
+        margin-right: 0px;
+    }
+
+    .fila1{
+      margin-bottom: 30px !important;
+    }
+
+    .fila2{
+      margin-top: 30px;
+    }
+
+    .categoria, .titulo-pelicula{
+      text-align: center;
+    }
+
+    .collection{
+      width: auto;
+    }
+
+    #slider{
+      width: 100%;
+    }
+    .peliculas  .caja-peli a img{
+        width: 90%;
+        height: 160px;
+    }
+    .peliculas  .caja-peli a img:hover{
+      width: 100%;
+    }
 }

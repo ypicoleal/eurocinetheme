@@ -56,8 +56,8 @@
 }
 
 .caja-apoyo .caja-p a img{
-    height: 121px;
-    width: 110px;
+    height:110px;
+    width: 121px;
     -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
     filter: grayscale(100%);
 }

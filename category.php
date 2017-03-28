@@ -37,7 +37,7 @@
 <body>
     <main class="container">
         <div class="row same-height ">
-            <div class="col m1 l3 s12 cont-menu">
+            <div class="col m3 l3 s12 cont-menu">
                 <div class="menu">
                     <ul>
                         <li>
@@ -74,23 +74,23 @@
             </div>
             <div class="col m11 l9 s12 contenido">
             <div class="row euro-titulo">
-                <div class="col l4 s5">
-                    <img class="" src="<?php bloginfo( 'template_directory' );?>/img/Titulo.png" alt="">
-                </div>
-                <div class="col l8 s7">
-                    <div class="euro-titulo-2">
-                        <p class="t1">Blog de la cultura del</p>
-                        <p class="t2">Cine Europeo</p>
-                    </div>
-                </div>
-            </div>
-              <div class="row">
-                  <div class="col s12  white-text separador">
-                      <span class="color-contenido titulos cont-span">FILTRAR POR</span><img class="star" src="<?php bloginfo( 'template_directory' );?>/img/star1.svg" alt="">
+                  <div class="col l4 s5">
+                      <img class="" src="<?php bloginfo( 'template_directory' );?>/img/Titulo.png" alt="">
                   </div>
-                  <div class="col s12">
-                      <nav class="filtros">
-                        <ul>
+                  <div class="col l8 s7">
+                      <div class="euro-titulo-2">
+                          <span class="t1">Blog de la cultura del</span><br>
+                          <span class="t2">Cine Europeo</span>
+                      </div>
+                  </div>
+              </div>
+                <div class="row">
+                    <div class="col s12  white-text separador">
+                        <span class="color-contenido titulos cont-span">FILTRAR POR</span><img class="star" src="<?php bloginfo( 'template_directory' );?>/img/star1.svg" alt="">
+                    </div>
+                    <div class="col s12 linea-col">
+                        <nav class="filtros">
+                          <ul>
                             <?php $categories = get_categories( array(
                                         'hide_empty'   => 0
                                     ) );
@@ -100,12 +100,11 @@
                                 $term_meta = get_option( "taxonomy_$t_id" ); ?>
                             <li><a href="<?php echo esc_url(get_category_link( $category->term_id )); ?>" class="gris" style="border-bottom:12px <?php echo esc_attr( $term_meta['cat_color'] ); ?> solid;"><span><?php echo esc_html( $category->name ); ?></span><span class="linea <?php echo $category === end($categories)? 'last' : '' ?>"></span></a></li>
                             <?php }?>
-                        </ul>
-                      </nav>
-                  </div>
-              </div>
-                
-                    <?php   
+                          </ul>
+                        </nav>
+                    </div>
+                </div>
+                  <?php   
                             $t_id = get_query_var('cat');
                             $term_meta = get_option( "taxonomy_$t_id" ); 
                             $color = esc_attr($term_meta['cat_color']);

@@ -7,6 +7,20 @@
   height: 298px;
 }
 
+.banner{
+  background-image: url("../img/home/banner_home_1024.png");
+  background-size: cover;
+  height: 309px;
+}
+
+.share{
+  margin-top: 15px;
+}
+
+.share .facebook, .share .twitter{
+  display: inline-block;
+}
+
 .opcion1 {
     background-image: url("../img/menu/menu2/eurocine_1024.png");
     height: 65px;

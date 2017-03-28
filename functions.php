@@ -75,7 +75,7 @@ function get_peliculas_slider(){
 				}
 				$box .= '<div class="col l2 s12 caja-peli">'. PHP_EOL;
                 $box .= '    <a href="'. get_the_permalink() .'"><img src="'. get_the_post_thumbnail_url() .'" alt="">'. PHP_EOL;
-                $box .= '        <h6 class="center white-text">'. get_the_title() .'</h6></a>'. PHP_EOL;
+                $box .= '        <div class="center titulo-pelicula-slider white-text">'. get_the_title() .'</div></a>'. PHP_EOL;
                 $box .= '</div>'. PHP_EOL;
 			    if ($counter == 7) {
 			    	$box .= '			</div>'. PHP_EOL;
@@ -269,7 +269,7 @@ function get_home_cat_posts($cat_id){
 			    $box .='        	<a href="'. get_the_permalink() .'"><img src="'. get_the_post_thumbnail_url() .'" style="width:100%; height:100%;"></a>';
 			    $box .='        </div>';
 			    $box .='        <div class="col s12 cont-left">';
-			    $box .='          <p> <span class="verde">'. get_the_category()[0]->name .'</span> '. get_the_date() .'</p>';
+			    $box .='          <p class="margin-bottom-0"> <span class="gris">'. get_the_category()[0]->name .'</span> '. get_the_date() .'</p>';
 			    $box .='          <p class="titulo-media-1">'. get_the_title() .'</p>';
 			    $box .='		  <p class="subtitulo-media">'. get_post_meta(get_the_ID(), '_subtitulo', true) . '</p>';
 			    $box .='        </div>';
@@ -298,7 +298,7 @@ function get_contenidos(){
 			    $box .='        	<a href="'. get_the_permalink() .'"><img src="'. get_the_post_thumbnail_url() .'" style="width:100%; height:100%;"></a>';
 			    $box .='        </div>';
 			    $box .='        <div class="col s12 cont-rigth">';
-			    $box .='          <p> <span class="verde">'. get_the_category()[0]->name .'</span> '. get_the_date() .'</p>';
+			    $box .='          <p class="margin-bottom-0"> <span class="verde">'. get_the_category()[0]->name .'</span> '. get_the_date() .'</p>';
 			    $box .='          <p class="titulo-media-1">'. get_the_title() .'</p>';
 			    $box .='		  <p class="subtitulo-media">'. get_post_meta(get_the_ID(), '_subtitulo', true) . '</p>';
 			    $box .='        </div>';

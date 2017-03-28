@@ -37,7 +37,7 @@
 <body>
     <main class="container">
         <div class="row same-height ">
-            <div class="col m1 l3 s12 cont-menu">
+            <div class="col m3 l3 s12 cont-menu">
                 <div class="menu">
                     <ul>
                         <li>
@@ -72,17 +72,25 @@
                     </ul>
                 </div>
             </div>
-            <div class="col m11 l9 s12 contenido">
+            <div class="col m9 l9 s12 contenido">
                 <?php if ( have_posts() ) : the_post(); ?>
                 <div class="row separador">
-                  <div class="col s12">
-                    <img src="<?php the_post_thumbnail_url();?>" width="100%" alt="">
-                  </div>
+                  <div class="col s12 banner" style="background-image: url(<?php the_post_thumbnail_url();?>); background-position: center;"></div>
                 </div>
                 <div class="row">
-                    <div class="col s12">
+                    <div class="col l8 m8 s12">
                       <h5><?php the_title(); ?></h5>
                       <p>Por: <?php the_author(); ?></p>
+                    </div>
+                    <div class="col l4 m4 s12 share">
+                        <div class="facebook">
+                            <iframe src="https://www.facebook.com/plugins/share_button.php?href=<?php echo urlencode(the_permalink()); ?>&layout=button&mobile_iframe=true&width=81&height=20&appId" width="81" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+                        </div>
+                        <div class="twitter">
+                        <iframe id="tweet-button" allowtransparency="true" frameborder="0" scrolling="no"
+                            src="http://platform.twitter.com/widgets/tweet_button.html?via=EUROCINE_Col&amp;text=<?php echo the_permalink(); ?>&amp;count=horizontal"
+                            style="width:110px; height:20px;"></iframe>
+                         </div>
                     </div>
                     <div class="col s12">
                       <?php the_content();?>

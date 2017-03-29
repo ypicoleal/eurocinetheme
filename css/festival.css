@@ -106,6 +106,7 @@
   height: 40px;
   overflow: hidden;
   text-overflow: ellipsis;
+  padding: 0 10px;
 }
 
 .cont-peli-padre{
@@ -288,6 +289,12 @@ a.control_prev:hover, a.control_next:hover {
   padding-right: 0px !important;
 }
 
+.cont-flecha a svg{
+  width: 30px;
+  height: 30px;
+}
+
+
 @media (max-width: 1336px) {
     .peliculas  .caja-peli a img{
         width: 120px;
@@ -322,7 +329,7 @@ a.control_prev:hover, a.control_next:hover {
 @media (max-width: 768px) {
 
   .peliculas  .caja-peli a img{
-      width: 81px;
+      width: 81;
       height: 135px;
   }
   .peliculas  .caja-peli a img:hover{
@@ -379,10 +386,24 @@ a.control_prev:hover, a.control_next:hover {
       width: 100%;
     }
     .peliculas  .caja-peli a img{
+        width: 106px;
+        height: 150px;
+    }
+    .peliculas  .caja-peli a img:hover{
         width: 116px;
         height: 160px;
     }
-    .peliculas  .caja-peli a img:hover{
-      width: 100%;
+
+    .cont-flecha a svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .cont-flecha.r a{
+      margin-left: -10px;
+    }
+
+    .cont-flecha.l a{
+      margin-right: -10px;  
     }
 }

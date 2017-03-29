@@ -299,7 +299,7 @@ function get_contenidos(){
 				$the_query->the_post();
 				$box .='<div class="col l6 s12 ">';
 			    $box .='    <div class="row">';
-			    $box .='        <div class="col s12 color-contenido caja-contenido cont-rigth">';
+			    $box .='        <div class="col s12 color-contenido caja-eventos cont-rigth">';
 			    $box .='        	<a href="'. get_the_permalink() .'"><img src="'. get_the_post_thumbnail_url() .'" style="width:100%; height:100%;"></a>';
 			    $box .='        </div>';
 			    $box .='        <div class="col s12 cont-rigth">';

@@ -107,10 +107,21 @@ main {
     width: 180px;
 }
 
-.caja-contenido{
+.caja-contenido, .caja-eventos{
   height: 204px;
   padding-right: 0px !important;
+  background-image: url("../img/foto eurofilmpedia1.png");
+  background-size: cover;
 }
+
+.caja-contenido{
+  border-left: 10px #4FB25F solid !important;
+}
+
+.caja-eventos{
+  border-left: 10px #606060 solid !important;
+}
+
 
 .caja-contenido img{
   width: 100%;
@@ -557,11 +568,11 @@ Medias
     }
 
     .menu ul li a {
-      width: 130px;
+      width: 145px;
     }
 
     .social ul li a img {
-      width: 25px;
+      width: 30px;
     }
 
     .cont-slider .slider .indicators {
@@ -571,15 +582,29 @@ Medias
     .slider .slides li img {
       background-size: cover;
     }
+
+    .descarga p{
+      font-size: 13px;
+    }
 }
 
 @media (max-width: 420px) {
+    .menu ul li a {
+      width: 170px;
+    }
+
+    .social ul li a img {
+      width: 36px;
+    }
+
     .press-kit {
         margin-left: 0 !important;
     }
+
     .kit {
         display: none;
     }
+
     .footer-movil {
         display: inherit;
         border-top: 10px solid black;
@@ -587,18 +612,22 @@ Medias
         display: flex;
         align-items: center;
     }
+
     .same-height {
         display: inherit;
     }
+
     .menu {
         padding-left: 0px;
         padding-top: 40px;
         text-align: center;
     }
+
     .cont-menu .menu, .all-fixed {
         position: inherit;;
         z-index: inherit;;
     }
+
     .contactenos{
       width: 50% !important;
       margin-right: 0px;
@@ -665,7 +694,10 @@ Medias
       display: none;
     }
     .slider .slides li img {
-      background-size: cover;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-color: #fff;
     }
     .cont-slider .slider .indicators{
       left: 80px;

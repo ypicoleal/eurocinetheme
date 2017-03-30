@@ -126,7 +126,7 @@ function get_peliculas_by_query($ciudad, $fecha){
 			$title = get_the_title();
 
 			$box .= '<tr>';
-            $box .= '    <td><h5 class="azul">'. $title .'</h5>'. 'Tel: ' . $telefono . '</td>';
+            $box .= '    <td><h5>'. $title .'</h5>'. 'Tel: ' . $telefono . '</td>';
             $box .= '    <td>'. $direccion .'</td>';
             $box .= '</tr>';
 
@@ -142,7 +142,7 @@ function get_peliculas_by_query($ciudad, $fecha){
 					$hora = date_format($date, 'g:ia');
 					if ($horario['teatro'] == $title && $fecha == new DateTime($horario['fecha'])) {
 						$box .= '                <tr>';
-			    		$box .= '                    <td class="td-pelicula"><a href="'. get_the_permalink() .'" style="color: #606060;">'. get_the_title() .'</a></td>';
+			    		$box .= '                    <td class="td-pelicula"><a href="'. get_the_permalink() .'">'. get_the_title() .'</a></td>';
 			    		$box .= '                    <td>'. $hora .'</td>';
 			    		$box .= '                </tr>';
 					}

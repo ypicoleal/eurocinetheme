@@ -24,8 +24,10 @@ Version:1.0
 
 body {
     display: flex;
+    display: -webkit-flex;
     min-height: 100vh;
     flex-direction: column;
+    -webkit-flex-direction: column;
     font-family: Elevation;
 }
 
@@ -66,14 +68,18 @@ main {
 }
 
 .cont-menu {
+    display: -webkit-flex;
     display: flex;
+    -webkit-flex-direction: column;
     flex-direction: column;
+    -webkit-align-items: center;
     align-items: center;
     margin-right: 10px;
 }
 
 .cont-menu .espacio {
     flex: 1;
+    -webkit-flex: 1;
 }
 
 .cont-menu .menu {
@@ -84,6 +90,8 @@ main {
 
 .all-fixed{
   align-items: center;
+  -webkit-align-items: center;
+  -webkit-flex-direction: column-reverse;
   flex-direction: column-reverse;
 }
 
@@ -399,6 +407,7 @@ main {
 }
 
 .same-height {
+    display: -webkit-flex;
     display: flex;
 }
 
@@ -609,7 +618,9 @@ Medias
         display: inherit;
         border-top: 10px solid black;
         height: 314px;
+        display: -webkit-flex;
         display: flex;
+        -webkit-align-items: center;
         align-items: center;
     }
 
@@ -643,7 +654,9 @@ Medias
     }
 
     .all-fixed{
+     -webkit-align-items: center;
       align-items: center;
+      -webkit-flex-direction: column;
       flex-direction: column;
     }
 

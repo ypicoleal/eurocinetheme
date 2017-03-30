@@ -56,6 +56,7 @@
 
 
 .fila1, .fila2{
+  display: -webkit-fkex;
   display: flex;
   -webkit-justify-content: space-around;
   justify-content: space-around;
@@ -97,8 +98,8 @@
 }
 
 .peliculas  .caja-peli a img:hover{
-  width: 140px;
-  height: 190px;
+  width: 135px;
+  height: 185px;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
@@ -110,7 +111,9 @@
 }
 
 .cont-peli-padre{
+  display: -webkit-flex;
   display: flex;
+  -webkit-align-items: center;
   align-items: center;
 }
 
@@ -198,6 +201,10 @@
     height: 308px;
 }
 
+.cb_calendar{
+    position: relative;
+    bottom: 8px;
+}
 
 .cb_calendar tbody td.cb_nday {
     visibility: hidden;
@@ -295,6 +302,10 @@ a.control_prev:hover, a.control_next:hover {
 }
 
 
+.td-pelicula{
+  text-decoration: underline;
+}
+
 @media (max-width: 1336px) {
     .peliculas  .caja-peli a img{
         width: 120px;
@@ -318,7 +329,8 @@ a.control_prev:hover, a.control_next:hover {
       height: 150px;
   }
   .peliculas  .caja-peli a img:hover{
-    width: 100%;
+    width: 100px;
+    height: 154px;
   }
 
   #slider{
@@ -329,11 +341,12 @@ a.control_prev:hover, a.control_next:hover {
 @media (max-width: 768px) {
 
   .peliculas  .caja-peli a img{
-      width: 81;
+      width: 81px;
       height: 135px;
   }
   .peliculas  .caja-peli a img:hover{
-    width: 100%;
+      width: 86px;
+      height: 140px;
   }
 
   #slider{
@@ -344,8 +357,11 @@ a.control_prev:hover, a.control_next:hover {
 @media (max-width: 420px) {
 
     .fila1, .fila2{
+      display: -webkit-flex;
       display: flex;
+      -webkit-justify-content: center;
       justify-content: center;
+      -webkit-flex-direction: column;
       flex-direction: column;
     }
 
@@ -404,6 +420,6 @@ a.control_prev:hover, a.control_next:hover {
     }
 
     .cont-flecha.l a{
-      margin-right: -10px;  
+      margin-right: -10px;
     }
 }

@@ -18,6 +18,7 @@
 }
 
 .fila1, .fila2{
+  display: -webkit-flex;
   display: flex;
   -webkit-justify-content: space-around;
   justify-content: space-around;

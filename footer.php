@@ -21,7 +21,7 @@ Sorry, your browser does not support inline SVG.
             </div>
             <div class="row cont">
                 <div class="col m5 l5 s12 press-kit kit descarga">
-                    <p>DESCARGAR PRESS KIT Aquí <a href="#" class="icono-descargar" target="_blank"><svg height="20" width="20" viewBox="0 0 210 210">
+                    <p>DESCARGAR PRESS KIT Aquí <a href="<?php echo get_option('presskit_url'); ?>" class="icono-descargar" target="_blank"><svg height="20" width="20" viewBox="0 0 210 210">
 <path d="M210 0 L0 0 L0 210 Z " fill="#000"/>
 Sorry, your browser does not support inline SVG.
 </svg></a></p>

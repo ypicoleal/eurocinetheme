@@ -18,6 +18,7 @@ function amigos_fn($atts){
 	$template = str_replace("{{slider-superior}}", get_slide_superior(), $template);
 	$template = str_replace("{{pauta-img}}", get_option('img_amigos'), $template);
 	$template = str_replace("{{pauta-url}}", get_option('amigos_url'), $template);
+	
 	return $template;
 }
 
@@ -48,6 +49,7 @@ function festival_fn($atts){
 	$template = str_replace("{{template_directory}}", $url_template, $template);
 	$template = str_replace("{{peliculas}}", get_peliculas_slider(), $template);
 	$template = str_replace("{{url_programacion}}", $url_programacion, $template);
+	$template = str_replace("{{comunitario-url}}", get_option('comunitario_url'), $template);
 	return $template;
 }
 
@@ -224,6 +226,7 @@ function home_fn($atts){
 	$template = str_replace("{{eurofilmpedia-url}}", get_option('eurofilmpedia_menu_url'), $template);
 	$template = str_replace("{{festival-url}}", get_option('festival_menu_url'), $template);
 	$template = str_replace("{{cat-url}}", esc_url(get_category_link( $cat_id )), $template);
+	$template = str_replace("{{comunitario-url}}", get_option('comunitario_url'), $template);
 	return $template;
 }
 
@@ -1024,6 +1027,18 @@ function display_eurofilmpedia_menu_element() {
     <?php
 }
 
+function display_presskit_url_element() {
+	?>
+    	<input type="text" name="presskit_url" id="presskit_url" value="<?php echo get_option('presskit_url'); ?>" />
+    <?php
+}
+
+function display_comunitario_url_element() {
+	?>
+    	<input type="text" name="comunitario_url" id="comunitario_url" value="<?php echo get_option('comunitario_url'); ?>" />
+    <?php
+}
+
 function home_img_display(){
 	?>
 		<img src="<?php echo get_option('img_home'); ?>" width="100" /><br>
@@ -1145,9 +1160,15 @@ function display_theme_panel_fields() {
     add_settings_field("festival_menu_url", "Festival menu Url", "display_festival_menu_element", "theme-options", "section");
     add_settings_field("eurofilmpedia_menu_url", "Eurofilmpedia menu Url", "display_eurofilmpedia_menu_element", "theme-options", "section");
 
+	add_settings_field("presskit_url", "Pres Kit Url", "display_presskit_url_element", "theme-options", "section");
+	add_settings_field("comunitario_url", "Eurocine comunitario Url", "display_comunitario_url_element", "theme-options", "section");    
+
     register_setting("section", "amigos_menu_url");
     register_setting("section", "festival_menu_url");
     register_setting("section", "eurofilmpedia_menu_url");
+
+    register_setting("section", "presskit_url");
+    register_setting("section", "comunitario_url");
 
     register_setting("section", "category_home");
     register_setting("section", "page_programacion");

@@ -99,7 +99,7 @@
                             foreach( $categories as $category ) {
                                 $t_id = $category->term_id;
                                 $term_meta = get_option( "taxonomy_$t_id" ); ?>
-                            <li><a href="<?php echo esc_url(get_category_link( $category->term_id )); ?>" class="gris" style="border-bottom:12px <?php echo esc_attr( $term_meta['cat_color'] ); ?> solid;"><span><?php echo esc_html( $category->name ); ?></span><span class="linea <?php echo $category === end($categories)? 'last' : '' ?>"></span></a></li>
+                            <li><a href="<?php echo esc_url(get_category_link( $category->term_id )); ?>" class="gris" style="border-bottom:12px <?php echo esc_attr( $term_meta['cat_color'] ); ?> solid;"><span><?php echo esc_html( $category->name ); ?></span></a></li>
                             <?php }?>
                           </ul>
                         </nav>

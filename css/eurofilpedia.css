@@ -114,20 +114,6 @@ nav ul li{
   color: #606060;
 }
 
-.linea{
-    border: 1px #4FB25F solid;
-    position: relative;
-    z-index: -1;
-    margin-left: -16px;
-    margin-top: -13px;
-    display: block;
-    width: 200%;
-}
-
-.linea.last{
-  width: 150%;
-}
-
 }
 .filtros .linea:last-child{
   width: 150% !important;

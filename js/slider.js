@@ -1,5 +1,6 @@
 $('.slider').slider({
     height: 231,
+    interval: 10000
 });
 
 $("#ciudad").val($(".collection-item.active").text());

@@ -3,7 +3,7 @@
         <div class="col m3 l3 s6 black white-text contactenos">
             <div>
                 <p>Contactenos</p>
-                <p>Cra 15 #82 - 58 Ofc</p>
+                <p>Cra. 15 No. 82-58, of. 302</p>
                 <p class="mail"><a href="mailto:direccion@festivaleurocine.com">direccion@festivaleurocine.com</a></p>
                 <p class="mail"><a href="mailto:coordinacion@festivaleurocine.com">coordinacion@festivaleurocine.com</a></p>
                 <p class="mail copyright">Copyright © 2017 Festival Eurocine</p>

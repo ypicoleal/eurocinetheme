@@ -116,7 +116,7 @@
                     <?php endif; ?>
                         <div class="col l6 s12">
                             <div class="row">
-                                <div class="col l11 s12 caja-contenido" style="background-color: <?php echo $color ?>;">
+                                <div class="col l11 s12 caja-contenido padding-0" style="border-left: 10px <?php echo $color ?> solid !important">
                                   <a href="<?php the_permalink(); ?>">
                                       <img src="<?php the_post_thumbnail_url();?>" alt="">
                                   </a>

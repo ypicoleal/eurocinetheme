@@ -51,7 +51,7 @@
                             <a href="<?php echo get_option('amigos_menu_url'); ?>" class="opcion3"></a>
                         </li>
                         <li>
-                            <a href="<?php echo get_option('eurofilmpedia_menu_url'); ?>" class="opcion4"></a>
+                            <a href="<?php echo get_option('eurofilmpedia_menu_url'); ?>" class="opcion4 active3"></a>
                         </li>
                     </ul>
                 </div>
@@ -116,9 +116,9 @@
                     <?php endif; ?>
                         <div class="col l6 s12">
                             <div class="row">
-                                <div class="col l11 s12 caja-contenido padding-0" style="border-left: 10px <?php echo $color ?> solid !important">
+                                <div class="col l11 s12 caja-contenido padding-0" style="border-left: 10px <?php echo $color ?> solid !important; background-image: url(<?php echo get_the_post_thumbnail_url() ?>); background-position: center;">
                                   <a href="<?php the_permalink(); ?>">
-                                      <img src="<?php the_post_thumbnail_url();?>" alt="">
+                                      <div style="width:100%; height:100%;"></div>
                                   </a>
                                 </div>
                                 <div class="col l11 s12 cont-texto">

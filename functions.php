@@ -49,7 +49,7 @@ function festival_fn($atts){
 	$template = str_replace("{{template_directory}}", $url_template, $template);
 	$template = str_replace("{{peliculas}}", get_peliculas_slider(), $template);
 	$template = str_replace("{{url_programacion}}", $url_programacion, $template);
-	$template = str_replace("{{comunitario-url}}", get_option('comunitario_url'), $template);
+	$template = str_replace("{{comunitario-url}}", get_option('programacion_download_url'), $template);
 	return $template;
 }
 
@@ -248,7 +248,7 @@ function get_peliculas(){
 		if ( $the_query->have_posts() ) {
 			while ( $the_query->have_posts() ) {
 				$the_query->the_post();
-				$box .= '<div class="col l3 s6">';
+				$box .= '<div class="col l3 s6 m6 center-align">';
 	            $box .= '    <a href="'. get_the_permalink() .'">';
 	            $box .= '        <img src="'. get_the_post_thumbnail_url() .'" alt="">';
 	            $box .= '        <h5 class="center">'. get_the_title() .'</h5>';
@@ -273,8 +273,8 @@ function get_home_cat_posts($cat_id){
 				$the_query->the_post();
 				$box .='<div class="col l6 s12 ">';
 			    $box .='    <div class="row">';
-			    $box .='        <div class="col s12 color-eventos caja-eventos cont-rigth padding-0">';
-			    $box .='        	<a href="'. get_the_permalink() .'"><img src="'. get_the_post_thumbnail_url() .'" style="width:100%; height:100%;"></a>';
+			    $box .='        <div class="col s12 color-eventos caja-eventos cont-rigth padding-0" style="background-image: url('. get_the_post_thumbnail_url() .'); background-position: center;">';
+			    $box .='        	<a href="'. get_the_permalink() .'"><div style="width:100%; height:100%;"></div></a>';
 			    $box .='        </div>';
 			    $box .='        <div class="col s12 cont-left">';
 			    $box .='          <p class="margin-bottom-0"> <span class="gris">'. get_the_category()[0]->name .'</span> '. get_the_date() .'</p>';
@@ -302,8 +302,8 @@ function get_contenidos(){
 				$the_query->the_post();
 				$box .='<div class="col l6 s12 ">';
 			    $box .='    <div class="row">';
-			    $box .='        <div class="col s12 color-contenido caja-contenido cont-rigth padding-0">';
-			    $box .='        	<a href="'. get_the_permalink() .'"><img src="'. get_the_post_thumbnail_url() .'" style="width:100%; height:100%;"></a>';
+			    $box .='        <div class="col s12 color-contenido caja-contenido cont-rigth padding-0" style="background-image: url('. get_the_post_thumbnail_url() .'); background-position: center;">';
+			    $box .='        	<a href="'. get_the_permalink() .'"><div style="width:100%; height:100%;"></div></a>';
 			    $box .='        </div>';
 			    $box .='        <div class="col s12 cont-rigth">';
 			    $box .='          <p class="margin-bottom-0"> <span class="verde">'. get_the_category()[0]->name .'</span> '. get_the_date() .'</p>';
@@ -1039,6 +1039,12 @@ function display_comunitario_url_element() {
     <?php
 }
 
+function display_programacion_download_url_element() {
+	?>
+    	<input type="text" name="programacion_download_url" id="programacion_download_url" value="<?php echo get_option('programacion_download_url'); ?>" />
+    <?php
+}
+
 function home_img_display(){
 	?>
 		<img src="<?php echo get_option('img_home'); ?>" width="100" /><br>
@@ -1161,7 +1167,8 @@ function display_theme_panel_fields() {
     add_settings_field("eurofilmpedia_menu_url", "Eurofilmpedia menu Url", "display_eurofilmpedia_menu_element", "theme-options", "section");
 
 	add_settings_field("presskit_url", "Pres Kit Url", "display_presskit_url_element", "theme-options", "section");
-	add_settings_field("comunitario_url", "Eurocine comunitario Url", "display_comunitario_url_element", "theme-options", "section");    
+	add_settings_field("comunitario_url", "Eurocine comunitario Url", "display_comunitario_url_element", "theme-options", "section");
+	add_settings_field("programacion_download_url", "Programacion descarga Url", "display_programacion_download_url_element", "theme-options", "section");        
 
     register_setting("section", "amigos_menu_url");
     register_setting("section", "festival_menu_url");
@@ -1169,6 +1176,7 @@ function display_theme_panel_fields() {
 
     register_setting("section", "presskit_url");
     register_setting("section", "comunitario_url");
+    register_setting("section", "programacion_download_url");
 
     register_setting("section", "category_home");
     register_setting("section", "page_programacion");

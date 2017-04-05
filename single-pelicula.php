@@ -38,14 +38,14 @@
 <body>
     <main class="container">
         <div class="row same-height ">
-            <div class="col m1 l3 s12 cont-menu">
+            <div class="col m3 l3 s12 cont-menu">
                 <div class="menu">
                     <ul>
                         <li>
                             <a href="<?php echo get_home_url(); ?>" class="opcion1"></a>
                         </li>
                         <li>
-                            <a href="<?php echo get_option('festival_menu_url'); ?>" class="opcion2"></a>
+                            <a href="<?php echo get_option('festival_menu_url'); ?>" class="opcion2 active1"></a>
                         </li>
                         <li>
                             <a href="<?php echo get_option('amigos_menu_url'); ?>" class="opcion3"></a>
@@ -73,7 +73,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col m11 l9 s12 contenido">
+            <div class="col m9 l9 s12 contenido">
                 <?php if ( have_posts() ) : the_post(); ?>
                 <div class="row separador">
                   <div class="col s12 trailer padding-0">

@@ -51,7 +51,7 @@
                             <a href="<?php echo get_option('amigos_menu_url'); ?>" class="opcion3"></a>
                         </li>
                         <li>
-                            <a href="<?php echo get_option('eurofilmpedia_menu_url'); ?>" class="opcion4"></a>
+                            <a href="<?php echo get_option('eurofilmpedia_menu_url'); ?>" class="opcion4 active3"></a>
                         </li>
                     </ul>
                 </div>

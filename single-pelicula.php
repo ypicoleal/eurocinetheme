@@ -73,7 +73,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col m9 l9 s12 contenido">
+            <div class="col m11 l9 s12 contenido">
                 <?php if ( have_posts() ) : the_post(); ?>
                 <div class="row separador">
                   <div class="col s12 trailer padding-0">

@@ -114,9 +114,9 @@
                     <?php if($flag): ?>
                     <div class="row same-height">
                     <?php endif; ?>
-                        <div class="col l6 s12">
+                        <div class="col m6 l6 s12">
                             <div class="row">
-                                <div class="col l11 s12 caja-contenido padding-0" style="border-left: 10px <?php echo $color ?> solid !important; background-image: url(<?php echo get_the_post_thumbnail_url() ?>); background-position: center;">
+                                <div class="col s12 caja-contenido padding-0" style="border-left: 10px <?php echo $color ?> solid !important; background-image: url(<?php echo get_the_post_thumbnail_url() ?>); background-position: center;">
                                   <a href="<?php the_permalink(); ?>">
                                       <div style="width:100%; height:100%;"></div>
                                   </a>

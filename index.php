@@ -82,7 +82,7 @@
                             <a href="https://twitter.com/EUROCINE_Col" target="_blank"><img src="<?php bloginfo( 'template_directory' );?>/img/menu-social/t1_home__home_1024.png" alt="Twitter"></a>
                         </li>
                         <li>
-                            <a href="https://www.youtube.com/channel/UCC8so8MpAfFqrd2ml40anFA" target="_blank"><img src="<?php bloginfo( 'template_directory' );?>/img/menu-social/y1_home__home_1024.png" alt="Youtube"></a>
+                            <a href="https://www.youtube.com/channel/UC2Nlm415Wg2IRlNsgFNPJnw" target="_blank"><img src="<?php bloginfo( 'template_directory' );?>/img/menu-social/y1_home__home_1024.png" alt="Youtube"></a>
                         </li>
                     </ul>
                 </div>

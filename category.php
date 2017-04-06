@@ -68,7 +68,7 @@
                             <a href="https://twitter.com/EUROCINE_Col" target="_blank"><img src="<?php bloginfo( 'template_directory' );?>/img/social/T1_1024.png" alt="Twitter"></a>
                         </li>
                         <li>
-                            <a href="https://www.youtube.com/channel/UCC8so8MpAfFqrd2ml40anFA" target="_blank"><img src="<?php bloginfo( 'template_directory' );?>/img/social/Y1_1024.png" alt="Youtube"></a>
+                            <a href="https://www.youtube.com/channel/UC2Nlm415Wg2IRlNsgFNPJnw" target="_blank"><img src="<?php bloginfo( 'template_directory' );?>/img/social/Y1_1024.png" alt="Youtube"></a>
                         </li>
                     </ul>
                 </div>
@@ -116,7 +116,7 @@
                     <?php endif; ?>
                         <div class="col m6 l6 s12">
                             <div class="row">
-                                <div class="col s12 caja-contenido padding-0" style="border-left: 10px <?php echo $color ?> solid !important; background-image: url(<?php echo get_the_post_thumbnail_url() ?>); background-position: center;">
+                                <div class="col s12 caja-contenido padding-0 cont-rigth" style="border-left: 10px <?php echo $color ?> solid !important; background-image: url(<?php echo get_the_post_thumbnail_url() ?>); background-position: center;">
                                   <a href="<?php the_permalink(); ?>">
                                       <div style="width:100%; height:100%;"></div>
                                   </a>
@@ -134,9 +134,9 @@
                     <?php $flag = !$flag; ?>
                     <?php  endwhile; endif; ?>
                     <?php if(!$flag): ?>
-                        <div class="col l6 s12 " >
+                        <div class="col m6 l6 s12 " >
                             <div class="row full-height">
-                                <div class="col l11 s12 full-height" style="padding: 0;">
+                                <div class="col l11 s12 full-height cont-rigth" style="padding: 0;">
                                     <a href="<?php echo get_option('eurofilmpedia_url'); ?>" target="_blank">
                                         <img src="<?php echo get_option('img_eurofilmpedia'); ?>" style="width: 100%; height: 100%;" />
                                     </a>
@@ -146,8 +146,8 @@
                     </div>
                     <?php else: ?>
                         <div class="row">
-                            <div class="col l6 s12 ">
-                                <div class="row full-height">
+                            <div class="col m6 l6 s12 ">
+                                <div class="row full-height cont-rigth">
                                     <div class="col l11 s12 full-height" style="padding: 0;">
                                         <a href="<?php echo get_option('eurofilmpedia_url'); ?>" target="_blank">
                                             <img src="<?php echo get_option('img_eurofilmpedia'); ?>" style="width: 100%; height: 100%;" />

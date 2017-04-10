@@ -515,7 +515,7 @@ Modal
 }
 
 .descarga-aqui{
-  font-size: 1.7vw;
+  font-size: 1.6vw;
   line-height: 0;
 }
 
@@ -631,9 +631,7 @@ Medias
       left: 120px;
     }
 
-    .descarga p{
-      font-size: 13px;
-    }
+
 
     .caratulas div a img {
       width: 75%;
@@ -656,6 +654,16 @@ Medias
 
     .kit {
         display: none;
+    }
+
+    .descarga p{
+      font-size: 10px;
+      line-height: 8px;
+    }
+
+    .descarga p svg{
+      height: 12px;
+      width: 12px;
     }
 
     .footer-movil {

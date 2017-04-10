@@ -306,6 +306,10 @@ a.control_prev:hover, a.control_next:hover {
   text-decoration: underline;
 }
 
+.info-festival{
+  margin-left: -10px;
+  color: #606060;
+}
 @media (max-width: 1336px) {
     .peliculas  .caja-peli a img{
         width: 120px;
